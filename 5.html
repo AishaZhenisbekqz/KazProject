@@ -6,96 +6,244 @@
     <title>Тілім - тірегім | My Language is My Support</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-blue: #0077be;
-            --secondary-gold: #ffd700;
-            --text-dark: #333;
-            --background-light: #f4f4f4;
-            --hover-color: rgba(0, 119, 190, 0.1);
-        }
+:root {
+    --primary-blue: #0077be;
+    --secondary-gold: #ffd700;
+    --text-dark: #333;
+    --background-light: #f4f4f4;
+    --hover-color: rgba(0, 119, 190, 0.1);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        /* Navigation */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+    color: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px;
+}
+
+/* Language Buttons */
+.language-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9rem;
+}
+
+.language-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Back Button */
+button {
+    background: white;
+    color: var(--primary-blue);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+/* Sections */
+section {
+    margin: 20px 0;
+}
+
+.section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cards */
+.bg-white {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* Video responsiveness */
+iframe {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+
+/* Fact cards */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+/* Pattern background */
+.kazakh-pattern {
+    background-size: 40px 40px;
+    background-attachment: fixed;
+}
+
+/* Blockquote */
+blockquote {
+    font-style: italic;
+    padding: 15px;
+    border-left: 3px solid var(--primary-blue);
+    margin: 20px 0;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
     .navbar {
-        display: flex;
-        justify-content: space-between;
+        padding: 10px;
+    }
+    
+    .navbar .container {
+        flex-direction: column;
+        gap: 10px;
         align-items: center;
-        background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
-        color: white;
+    }
+    
+    .section {
         padding: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
-
-
-    /* Дополнительные стили для кнопок */
-    .language-btn {
-        background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: background 0.3s;
+    
+    h1 {
+        font-size: 1.5rem;
     }
-
-    .language-btn:hover {
-        background: rgba(255,255,255,0.3);
+    
+    h2 {
+        font-size: 1.3rem;
     }
+    
+    iframe {
+        height: 250px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-    /* Кнопка назад */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .navbar .container {
+        padding: 0 10px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+    }
+    
     button {
-        background: white;
-            color: var(--primary-blue);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
+    
+    .language-btn {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    iframe {
+        height: 200px;
+    }
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--background-light);
-        }
+/* Fix for tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+@media (min-width: 768px) {
+    table {
+        display: table;
+    }
+}
 
-        .kazakh-pattern {
-            background-size: 40px 40px;
-        }
+/* List styling */
+ul, ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
 
-        .section-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .section-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .section {
-                padding: 15px;
-            }
-        }
+/* Ensure content doesn't overflow */
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
     </style>
 </head>
 <body class="kazakh-pattern">

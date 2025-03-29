@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мен – Қазақстан азаматымын | Kazakhstan Citizen</title>
+    <style>
+        :root {
+            --primary-blue: #0077be;
+            --secondary-gold: #ffd700;
+            --text-dark: #333;
+            --background-light: #f4f4f4;
+            --hover-color: rgba(0, 119, 190, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+            color: white;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .brand-text {
+    font-size: 28px;  /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .language-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .back-btn {
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title i {
+            margin-right: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Map Styles */
+        .kazakhstan-map {
+            position: relative;
+            width: 100%;
+        }
+
+        .kazakhstan-map img {
+            width: 100%;
+            height: auto;
+        }
+
+        .map-region {
+            position: absolute;
+            fill: rgba(0,119,190,0.3);
+            transition: fill 0.3s;
+        }
+
+        .map-region:hover {
+            fill: rgba(0,119,190,0.6);
+            cursor: pointer;
+        }
+
+        /* Мемлекеттік рәміздер бөлімі */
+        .state-symbols {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px; /* Блоктар арасындағы қашықтық */
+        }
+
+        .anthem {
+            flex: 1; /* Әнұран блогы */
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Ортасына орналастыру */
+            text-align: center; /* Мәтінді ортаға қою */
+            margin-left: 50px; /* Оңға жылжыту */
+        }
+
+        .flag-emblem {
+            flex: 1; /* Ту мен Елтаңба блогы */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .flag, .emblem {
+            margin-bottom: 20px;
+        }
+
+        .flag-image {
+            width: 370px;
+            height: 200px; /* Қалаған биіктік */
+            object-fit: cover; /* Пропорцияны сақтау үшін */
+        }
+
+        .emblem-image {
+            width: 300px;
+            height: 330px; /* Қалаған биіктік */
+            object-fit: cover; /* Пропорцияны сақтау үшін */
+        }
+
+        /* Әнұран аудио және мәтін */
+        .anthem-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-right: 100px;
+        }
+
+        .anthem-text {
+            font-size: 13px;
+            font-style: italic;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .flag-authors, .emblem-authors, .anthem-authors {
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .state-symbols {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .anthem, .flag-emblem {
+                width: 100%;
+                text-align: center;
+            }
+
+        /* Ethnic Composition */
+        .ethnic-chart {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+
+        .ethnic-bar {
+            flex-grow: 1;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+       
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Kazakhstan Emblem">
+            <span class="brand-text" data-text-kk="Мен - Қазақстан азаматымын" 
+                  data-text-ru="Я – гражданин Казахстана" 
+                  data-text-en="Citizen of Kazakhstan">
+                Я – гражданин Казахстана
+            </span>
+        </div>
+        <div class="language-switcher">
+            <button class="language-btn" data-lang="kk">Қаз</button>
+            <button class="language-btn" data-lang="ru">Рус</button>
+            <button class="language-btn" data-lang="en">Eng</button>
+        </div>
+        <button class="back-btn" onclick="window.history.back()">
+            ← Назад
+        </button>
+    </nav>
+
+    <!-- Раздел "Я и моя Родина" -->
+    <div class="container">
+        <section class="section homeland-section">
+            <div class="section-title">
+                <i class="fas fa-flag"></i>
+                <h2 data-text-kk="Мен және менің Отаным" 
+                    data-text-ru="Я и моя Родина" 
+                    data-text-en="Me and My Homeland">
+                    Я и моя Родина
+                </h2>
+            </div>
+            <p data-text-kk="Қазақстан – Еуразия жүрегінде орналасқан алып мемлекет, ол өзінің шексіз далалары, асқар таулары, мөлдір көлдері мен кең өзендері арқылы табиғаттың сан алуан сұлулығын паш етеді. Бұл ел тарихы тереңнен тамыр алатын, сан ғасырлық мәдениеттің, батырлық рухтың және өркениеттің ордасы саналады. Қазақстан аумағында ерте замандарда көшпенді тайпалар өмір сүрген, олардың ұрпақтары бүгінде осы ұлан-ғайыр жердің иесі болып табылады."
+           data-text-ru="Казахстан — государство, расположенное в самом центре Евразии, где бескрайние степи сменяются величественными горами, прозрачные озёра питаются чистыми реками, а древние традиции кочевников соседствуют с инновациями современного мира. Эта земля несёт в себе богатую историю, начиная от эпохи кочевых цивилизаций до современного процветающего государства."
+           data-text-en="Kazakhstan is a vast and magnificent country located in the heart of Eurasia. It is a land where boundless steppes merge with towering mountains, crystal-clear lakes are nourished by pure rivers, and the ancient traditions of nomadic civilizations coexist with modern innovations. This country has a deep and fascinating history, from the era of nomadic tribes to the establishment of a thriving modern state.">
+        </p>
+
+        <p data-text-kk="Ұлы Жібек жолының күретамырында орналасқан Қазақстан – Батыс пен Шығысты, Еуропа мен Азияны байланыстыратын алтын көпір іспетті. Ел аумағында сақталған көне қалалар мен тарихи ескерткіштер, ежелгі өркениеттердің мұралары Қазақстанның мәдени байлығының айқын дәлелі. Киелі Түркістан, ежелгі Отырар, Қаратау үңгірлері – барлығы да осы жердің шежіресі."
+           data-text-ru="На территории Казахстана располагались древние города, через которые проходил Великий шелковый путь. Сегодня остатки этих городов, такие как Туркестан и Отрар, напоминают о славном прошлом страны. Здесь зарождались традиции гостеприимства, храбрости и уважения к старшим, которые передаются из поколения в поколение."
+           data-text-en="Kazakhstan played a crucial role in the Great Silk Road, serving as a bridge between East and West. Ancient cities like Turkestan and Otrar stand as witnesses to the nation's rich past, while the cultural and historical legacy of the Kazakh people continues to thrive. Hospitality, bravery, and deep respect for elders are values that have been passed down for generations.">
+        </p>
+
+        <p data-text-kk="Қазақстан – көпұлтты және көпконфессиялы мемлекет. Мұнда жүзден астам этнос өкілдері татулықта өмір сүріп, бір-бірінің мәдениетін құрметтейді. Бірлік пен келісім – еліміздің басты құндылығы. Бүгінде Қазақстан халықаралық аренада бейбітшілік пен тұрақтылықтың символына айналып, жаһандық мәселелерді шешуде маңызды рөл атқарады."
+           data-text-ru="Казахстан — это страна мира и согласия, где более ста этносов и народностей живут в дружбе и гармонии. Это уникальный пример единства и толерантности. Государство активно развивает межнациональный диалог, что делает его важным игроком на международной арене."
+           data-text-en="Kazakhstan is a land of unity and diversity, where over a hundred ethnic groups and nationalities live together in peace and harmony. This unique example of multicultural coexistence has positioned Kazakhstan as a model of interethnic harmony and stability on the global stage.">
+        </p>
+
+        <p data-text-kk="Еліміздің табиғаты да сан алуан: шөлейтті аймақтардан бастап, ну ормандарға, тау шыңдарынан көгілдір көлдер мен кең өзендерге дейінгі ландшафттардың әртүрлілігі Қазақстанның ерекше табиғи байлығы болып саналады. Алатаудың қарлы шыңдары, Бурабайдың таңғажайып табиғаты, Каспий теңізінің жағалауы – осының бәрі туған жеріміздің мақтанышы."
+           data-text-ru="Природа Казахстана поражает своим разнообразием: от бескрайних степей до величественных гор, от пустынных ландшафтов до хвойных лесов. Национальные парки, такие как Баянаул, Катон-Карагай и Алтын-Эмель, являются сокровищницами уникальной флоры и фауны."
+           data-text-en="The country is also home to breathtaking landscapes: from the vast steppes to towering mountains, from desert plains to lush forests. Natural parks such as Bayan-Aul, Katon-Karagay, and Altyn-Emel showcase the unique biodiversity of the region.">
+        </p>
+
+        <p data-text-kk="Тәуелсіздік алғаннан бері Қазақстан экономикасы мен әлеуметтік саласында үлкен жетістіктерге қол жеткізді. Бүгінде еліміз әлемдік қауымдастықта беделді мемлекетке айналды. Қазақстанның басты мақсаты – өркендеген, дамыған, бәсекеге қабілетті ел құру және болашақ ұрпаққа жарқын болашақ сыйлау."
+           data-text-ru="С момента обретения независимости Казахстан прошел огромный путь развития. Сегодня это страна с динамично растущей экономикой, богатой культурой и устремлённым в будущее народом. Цель Казахстана — стать одной из передовых стран мира, сохранив при этом свою самобытность и уникальность."
+           data-text-en="Since gaining independence, Kazakhstan has made remarkable progress in economic and social development. Today, it stands as a dynamically growing nation with a rich cultural heritage and a bright future. Kazakhstan aims to become one of the world's leading nations while preserving its unique identity and traditions.">
+        </p>
+
+        </section>
+
+       <!-- Карта Казахстана -->
+<section class="section map-section">
+    <div class="section-title">
+        <i class="fas fa-map-marked-alt"></i>
+        <h2 class="map-title" 
+            data-text-kk="Қазақстан картасы" 
+            data-text-ru="Карта Казахстана" 
+            data-text-en="Map of Kazakhstan">
+            Карта Казахстана
+        </h2>
+    </div>
+    <div class="kazakhstan-map">
+        <img class="map-image" 
+             src="карта1.jpeg" 
+             alt="Kazakhstan Map"
+             data-img-kk="карта1.jpeg" 
+             data-img-ru="карта2.webp" 
+             data-img-en="карта3.png">
+    </div>
+</section>
+
+<!-- Мемлекеттік рәміздер бөлімі -->
+    <section class="section symbols-section">
+        <div class="section-title">
+            <h2 class="symbols-title"
+                data-text-kk="Мемлекеттік рәміздер"
+                data-text-ru="Государственные символы"
+                data-text-en="State Symbols">
+                Мемлекеттік рәміздер
+            </h2>
+        </div>
+
+        <div class="state-symbols">
+            <!-- Сол жақ (Ту және Елтаңба) -->
+            <div class="flag-emblem">
+                <div class="flag">
+                    <h3 class="flag-title"
+                        data-text-kk="Ту"
+                        data-text-ru="Флаг"
+                        data-text-en="Flag">Ту</h3>
+                    <img class="flag-image" 
+                         src="flag.jpeg" 
+                         alt="Kazakhstan Flag">
+                    
+                    <div class="flag-authors">
+                        <p data-text-kk="Авторы: Шәкен Ниязбеков"
+                           data-text-ru="Автор: Шакен Ниязбеков"
+                           data-text-en="Author: Shaken Niyazbekov">
+                            Авторы: Шәкен Ниязбеков
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="emblem">
+                    <h3 class="emblem-title"
+                        data-text-kk="Елтаңба"
+                        data-text-ru="Герб"
+                        data-text-en="Emblem">Елтаңба</h3>
+                    <img class="emblem-image"
+                         src="gerb.jpeg"
+                         alt="Kazakhstan Emblem">
+                    
+                    <div class="emblem-authors">
+                        <p data-text-kk="Авторлары: Жандарбек Мәлібеков, Шота Уәлиханов"
+                           data-text-ru="Авторы: Жандарбек Малибеков, Шота Уалиханов"
+                           data-text-en="Authors: Zhandarbek Malibekov, Shota Ualikhanov">
+                            Авторлары: Жандарбек Мәлібеков, Шота Уәлиханов
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Оң жақ (Әнұран мәтіні және аудио) -->
+            <div class="anthem">
+                <h3 class="anthem-title"
+                    data-text-kk="Әнұран"
+                    data-text-ru="Гимн"
+                    data-text-en="Anthem">Әнұран</h3>
+
+                <div class="anthem-text">
+                    <p class="anthem-lyrics">
+                       Алтын күн аспаны,<br>  
+                       Алтын дән даласы,<br>  
+                       Ерліктің дастаны, <br> 
+                       Еліме қарашы!  <br>
+                       Ежелден ер деген, <br> 
+                       Даңқымыз шықты ғой.<br>  
+                       Намысын бермеген,  <br>
+                       Қазағым мықты ғой!  
+                       <br><br>
+                       <strong>Қайырмасы:</strong>  
+                       <br>
+                       Менің елім, менің елім,<br>  
+                       Гүлің болып егілемін,  <br>
+                       Жырың болып төгілемін, елім! <br> 
+                       Туған жерім менің – Қазақстаным!  
+                       <br><br>
+                       Ұрпаққа жол ашқан,<br>  
+                       Кең байтақ жерім бар.<br>  
+                       Бірлігі жарасқан,<br>  
+                       Тәуелсіз елім бар.<br>  
+                       Қарсы алған уақытты,<br>  
+                       Мәңгілік досындай,<br>  
+                       Біздің ел бақытты,<br>  
+                       Біздің ел осындай!  
+                       <br><br>
+                       <strong>Қайырмасы:</strong>  
+                       <br>
+                       Менің елім, менің елім,<br>  
+                       Гүлің болып егілемін, <br> 
+                       Жырың болып төгілемін, елім!<br>  
+                       Туған жерім менің – Қазақстаным!
+                    </p>
+                </div>
+
+                <audio id="national-anthem" controls>
+                    <source src="GIMN.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудио
+                </audio>
+
+                <div class="anthem-authors">
+                    <p data-text-kk="Әнұран авторлары: Жұмекен Нәжімеденов, Нұрсұлтан Назарбаев, Шәмші Қалдаяқов"
+                       data-text-ru="Авторы гимна: Жумекен Нажимеденов, Нурсултан Назарбаев, Шамши Калдаяков"
+                       data-text-en="Anthem authors: Zhumeken Nazhimedenov, Nursultan Nazarbayev, Shamshi Kaldayakov">
+                        Әнұран авторлары: Жұмекен Нәжімеденов, Нұрсұлтан Назарбаев, Шәмші Қалдаяқов
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section ethnic-section">
+    <div class="ethnic-container">
+        <!-- Сол жақ: Ақпарат -->
+        <div class="ethnic-info">
+            <h2 data-text-kk="Қазақстандағы этникалық топтар" data-text-ru="Этнические группы в Казахстане" data-text-en="Ethnic Groups in Kazakhstan">
+                Қазақстандағы этникалық топтар
+            </h2>
+            <p style="font-size: 12px;" data-text-kk="Қазақстан – көпұлтты әрі көпмәдениетті мемлекет, онда 130-дан астам этнос өкілдері бейбітшілік пен келісімде өмір сүреді. Тарихи тұрғыдан алғанда, бұл аймақ түрлі халықтар мен мәдениеттердің тоғысқан орталығы болды. Бүгінде Қазақстан халқының негізгі бөлігін қазақтар, орыстар, өзбектер, украиндар, ұйғырлар, татарлар, немістер, корейлер және басқа да этностар құрайды.  Елдегі этностық әртүрлілік – Қазақстанның баға жетпес байлығы. 1991 жылы тәуелсіздік алған сәттен бастап, мемлекет ұлтаралық келісім мен этносаралық татулықты басты құндылықтардың бірі ретінде ұстанып келеді. Бұл саясаттың маңызды құралы – 1995 жылы құрылған Қазақстан халқы Ассамблеясы. Ассамблея этностар арасындағы достық пен ынтымақтастықты нығайтуда маңызды рөл атқарады. Қазақстанда әрбір этностың мәдениеті мен дәстүрін сақтау үшін ерекше жағдай жасалған. Елімізде көптеген этномәдени бірлестіктер, ұлттық орталықтар мен мектептер жұмыс істейді. Сондай-ақ, мемлекеттік деңгейде әр этностың тілін дамытуға қолдау көрсетіледі. 20-дан астам этникалық тілде газет-журналдар шығады, радио және телебағдарламалар жүргізіледі. Жыл сайын Қазақстанда түрлі этностардың мәдениетін дәріптейтін фестивальдер, ұлттық мерекелер және мәдени іс-шаралар өткізіледі. Бұл оқиғалар халықтар арасындағы өзара сыйластық пен ынтымақтастықты арттырып, ұлттық бірлікті нығайтуға септігін тигізеді. Еліміздің Конституциясы мен мемлекеттік саясаты Қазақстандағы барлық этностың тең құқығы мен еркіндігін қамтамасыз етеді. Мемлекет көпұлтты қоғамның үйлесімді дамуы үшін «Бірлік пен әртүрлілік» қағидатын басшылыққа алады. Осылайша, Қазақстан өзінің этностық әралуандығын ұлттың басты байлығы ретінде бағалап, бейбітшілік пен тұрақтылықты сақтауға бағытталған саясат жүргізіп келеді."  
+            data-text-ru="Казахстан – многонациональное и многокультурное государство, в котором более 130 этнических групп живут в мире и согласии. Исторически этот регион всегда был перекрестком народов и культур. Сегодня население страны представлено казахами, русскими, узбеками, украинцами, уйгурами, татарами, немцами, корейцами и другими этносами. Этническое многообразие – одно из главных богатств Казахстана. С момента обретения независимости в 1991 году государство уделяет особое внимание межнациональному согласию и дружбе народов. Ключевым инструментом в этом процессе является Ассамблея народа Казахстана, созданная в 1995 году для укрепления единства и толерантности.  В стране созданы благоприятные условия для сохранения и развития культур всех этнических групп. Десятки этнокультурных объединений и национальных центров работают в Казахстане, предоставляя возможность изучения родного языка, сохранения традиций и обычаев. Государство активно поддерживает языковое разнообразие: выпускаются газеты и журналы на более чем 20 языках, ведутся теле- и радиопередачи.  Каждый год в Казахстане проходят фестивали, национальные праздники и культурные мероприятия, направленные на популяризацию этнического многообразия. Эти события укрепляют взаимное уважение, гармонию и единство общества. Конституция Казахстана гарантирует равные права и свободы всем гражданам страны, независимо от их этнической принадлежности. Государственная политика основывается на принципе «Единство в многообразии», что позволяет Казахстану сохранять стабильность и мир, делая этнокультурное богатство своим стратегическим преимуществом."  
+            data-text-en="Kazakhstan is a multi-ethnic and multicultural state where more than 130 ethnic groups live in peace and harmony. Historically, this region has always been a crossroads of peoples and cultures. Today, the country’s population consists of Kazakhs, Russians, Uzbeks, Ukrainians, Uighurs, Tatars, Germans, Koreans, and many others.  Ethnic diversity is one of Kazakhstan’s greatest assets. Since gaining independence in 1991, the country has prioritized interethnic harmony and unity. A key institution in this process is the Assembly of the People of Kazakhstan, established in 1995 to promote friendship and cooperation among ethnic groups. Kazakhstan has created favorable conditions for the preservation and development of the cultural heritage of all ethnic communities. Numerous ethnocultural associations and national centers operate in the country, providing opportunities for learning native languages, preserving traditions, and maintaining cultural identity. The government actively supports linguistic diversity, with newspapers, magazines, and broadcast media available in more than 20 languages. Each year, Kazakhstan hosts festivals, national holidays, and cultural events that celebrate ethnic diversity and promote mutual respect among different communities. These events contribute to strengthening social cohesion and national unity. Kazakhstan’s Constitution guarantees equal rights and freedoms for all citizens, regardless of their ethnic background. The country's policy is based on the principle of 'Unity in Diversity,' ensuring stability, peace, and the preservation of its rich ethnocultural heritage."  >  
+            Қазақстан – көпұлтты әрі көпмәдениетті мемлекет, онда 130-дан астам этнос өкілдері бейбітшілік пен келісімде өмір сүреді. Тарихи тұрғыдан алғанда, бұл аймақ түрлі халықтар мен мәдениеттердің тоғысқан орталығы болды. Бүгінде Қазақстан халқының негізгі бөлігін қазақтар, орыстар, өзбектер, украиндар, ұйғырлар, татарлар, немістер, корейлер және басқа да этностар құрайды. Елдегі этностық әртүрлілік – Қазақстанның баға жетпес байлығы. 1991 жылы тәуелсіздік алған сәттен бастап, мемлекет ұлтаралық келісім мен этносаралық татулықты басты құндылықтардың бірі ретінде ұстанып келеді. Бұл саясаттың маңызды құралы – 1995 жылы құрылған "Қазақстан халқы Ассамблеясы". Ассамблея этностар арасындағы достық пен ынтымақтастықты нығайтуда маңызды рөл атқарады. Қазақстанда әрбір этностың мәдениеті мен дәстүрін сақтау үшін ерекше жағдай жасалған. Елімізде көптеген этномәдени бірлестіктер, ұлттық орталықтар мен мектептер жұмыс істейді. Сондай-ақ, мемлекеттік деңгейде әр этностың тілін дамытуға қолдау көрсетіледі. 20-дан астам этникалық тілде газет-журналдар шығады, радио және телебағдарламалар жүргізіледі. Жыл сайын Қазақстанда түрлі этностардың мәдениетін дәріптейтін фестивальдер, ұлттық мерекелер және мәдени іс-шаралар өткізіледі. Бұл оқиғалар халықтар арасындағы өзара сыйластық пен ынтымақтастықты арттырып, ұлттық бірлікті нығайтуға септігін тигізеді. Еліміздің Конституциясы мен мемлекеттік саясаты Қазақстандағы барлық этностың тең құқығы мен еркіндігін қамтамасыз етеді. Мемлекет көпұлтты қоғамның үйлесімді дамуы үшін «Бірлік пен әртүрлілік» қағидатын басшылыққа алады. Осылайша, Қазақстан өзінің этностық әралуандығын ұлттың басты байлығы ретінде бағалап, бейбітшілік пен тұрақтылықты сақтауға бағытталған саясат жүргізіп келеді.
+            </p>
+        </div>
+
+        <!-- Оң жақ: Диаграмма және өңір таңдау -->
+        <div class="ethnic-chart-container">
+            <div class="region-selector">
+                <label for="regionSelect" data-text-kk="Өңірді таңдаңыз:" data-text-ru="Выберите регион:" data-text-en="Select a region:">
+                    Өңірді таңдаңыз:
+                </label>
+                <select id="regionSelect">
+                    <option value="all" data-text-kk="Барлық Қазақстан" data-text-ru="Весь Казахстан" data-text-en="All of Kazakhstan">Барлық Қазақстан</option>
+                    <option value="east" data-text-kk="Шығыс Қазақстан" data-text-ru="Восточный Казахстан" data-text-en="East Kazakhstan">Шығыс Қазақстан</option>
+                    <option value="south" data-text-kk="Оңтүстік Қазақстан" data-text-ru="Южный Казахстан" data-text-en="South Kazakhstan">Оңтүстік Қазақстан</option>
+                    <option value="karaganda" data-text-kk="Қарағанды" data-text-ru="Караганда" data-text-en="Karaganda">Қарағанды</option>
+                    <option value="almaty" data-text-kk="Алматы" data-text-ru="Алматы" data-text-en="Almaty">Алматы</option>
+                    <option value="north" data-text-kk="Солтүстік Қазақстан" data-text-ru="Северный Казахстан" data-text-en="North Kazakhstan">Солтүстік Қазақстан</option>
+                </select>
+            </div>
+            <canvas id="ethnicChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Тіл таңдау -->
+    <div class="language-switcher">
+        <button class="language-btn" data-lang="kk">Қазақша</button>
+        <button class="language-btn" data-lang="ru">Русский</button>
+        <button class="language-btn" data-lang="en">English</button>
+    </div>
+</section>
+
+<style>
+    .ethnic-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ethnic-info {
+        flex: 1;
+        min-width: 300px;
+        max-width: 45%;
+    }
+
+    .ethnic-chart-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .region-selector {
+        margin-bottom: 10px;
+    }
+
+    .ethnic-chart-container canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    @media (max-width: 768px) {
+        .ethnic-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .ethnic-info, .ethnic-chart-container {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        all: {
+            labels: { kk: ["Қазақтар", "Орыстар", "Өзбектер", "Басқа"], ru: ["Казахи", "Русские", "Узбеки", "Другие"], en: ["Kazakhs", "Russians", "Uzbeks", "Others"] },
+            values: [71, 14.9, 3.3, 10.8]
+        },
+        east: { labels: { kk: ["Қазақтар", "Орыстар", "Украиндар", "Басқа"], ru: ["Казахи", "Русские", "Украинцы", "Другие"], en: ["Kazakhs", "Russians", "Ukrainians", "Others"] }, values: [60, 25, 5, 10] },
+        south: { labels: { kk: ["Қазақтар", "Өзбектер", "Ұйғырлар", "Басқа"], ru: ["Казахи", "Узбеки", "Уйгуры", "Другие"], en: ["Kazakhs", "Uzbeks", "Uighurs", "Others"] }, values: [75, 15, 5, 5] },
+        karaganda: { labels: { kk: ["Қазақтар", "Орыстар", "Немістер", "Басқа"], ru: ["Казахи", "Русские", "Немцы", "Другие"], en: ["Kazakhs", "Russians", "Germans", "Others"] }, values: [55, 30, 10, 5] },
+        almaty: { labels: { kk: ["Қазақтар", "Орыстар", "Ұйғырлар", "Басқа"], ru: ["Казахи", "Русские", "Уйгуры", "Другие"], en: ["Kazakhs", "Russians", "Uighurs", "Others"] }, values: [65, 20, 10, 5] },
+        north: { labels: { kk: ["Қазақтар", "Орыстар", "Украиндар", "Басқа"], ru: ["Казахи", "Русские", "Украинцы", "Другие"], en: ["Kazakhs", "Russians", "Ukrainians", "Others"] }, values: [50, 35, 10, 5] }
+    };
+
+    function getDefaultLanguage() {
+        let lang = navigator.language || navigator.userLanguage;
+        lang = lang.split("-")[0]; // Егер "kk-KZ" болса, тек "kk" алу
+        return ["kk", "ru", "en"].includes(lang) ? lang : "kk"; // Егер басқа тіл болса, әдепкі "kk"
+    }
+
+    let currentLanguage = getDefaultLanguage();
+
+    function updateChart() {
+        let selectedRegion = document.getElementById("regionSelect").value;
+        ethnicChart.data.labels = data[selectedRegion].labels[currentLanguage];
+        ethnicChart.data.datasets[0].data = data[selectedRegion].values;
+        ethnicChart.update();
+    }
+
+    let ctx = document.getElementById("ethnicChart").getContext("2d");
+    let ethnicChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: data.all.labels[currentLanguage], // Бастапқыда әдепкі тіл қолданылады
+            datasets: [{
+                data: data.all.values,
+                backgroundColor: ["#ffcc00", "#ff6666", "#66cc66", "#6699ff"]
+            }]
+        }
+    });
+
+    document.getElementById("regionSelect").addEventListener("change", updateChart);
+</script>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButtons = document.querySelectorAll('.language-btn');
+            const translatableElements = document.querySelectorAll('[data-text-kk]');
+
+            const translations = {
+                kk: {
+                    homeland: 'Мен және менің Отаным',
+                    homelandDesc: 'Қазақстан - Орталық Азиядағы үлкен мемлекет',
+                    brandText: 'Мен - Қазақстан азаматымын'
+                },
+                ru: {
+                    homeland: 'Я и моя Родина',
+                    homelandDesc: 'Казахстан - крупнейшее государство Центральной Азии',
+                    brandText: 'Я – гражданин Казахстана'
+                },
+                en: {
+                    homeland: 'Me and My Homeland',
+                    homelandDesc: 'Kazakhstan is the largest state in Central Asia',
+                    brandText: 'Citizen of Kazakhstan'
+                }
+            };
+
+            function switchLanguage(lang) {
+                translatableElements.forEach(el => {
+                    el.textContent = el.getAttribute(`data-text-${lang}`);
+                });
+
+                document.querySelector('.brand-text').textContent = translations[lang].brandText;
+            }
+
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+
+            
+    </script>
+    <script src="language-switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Салт-дәстүр сабақтастығы</title>
+    <style>
+        :root {
+            --primary-blue: #0077be;
+            --secondary-gold: #ffd700;
+            --text-dark: #333;
+            --background-light: #f4f4f4;
+            --hover-color: rgba(0, 119, 190, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+            color: white;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo img {
+            height: 80px;
+            margin-right: 10px;
+        }
+        .navbar-title {
+    font-size: 28px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    color: #ffffff; /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    padding: 10px 20px; /* Отступы */
+    border-radius: 8px; /* Закругленные углы */
+}
+
+        .brand-text {
+    font-size: 28px;  /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+        .language-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-buttons {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .language-buttons:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .back-button {
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Rest of the previous CSS remains the same */
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-gold);
+            padding-bottom: 10px;
+        }
+
+        .traditions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .traditions-table th, .traditions-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .traditions-table th {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: block !important;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .traditions-table {
+                font-size: 14px;
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="tlogo.png" alt="Logo" />
+        </div>
+        <div class="navbar-title" id="pageTitle">Салт-дәстүр сабақтастығы</div>
+        <div class="navbar-actions">
+            <div class="language-buttons">
+                <button onclick="changeLanguage('kk')">Қазақша</button>
+                <button onclick="changeLanguage('ru')">Русский</button>
+                <button onclick="changeLanguage('en')">English</button>
+            </div>
+            </div>
+            <button class="back-button" id="backButton" onclick="goBack()">← Назад</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section traditions-explanation">
+            <h2 class="section-title" id="traditionsTitle">Традиции: Духовная связь поколений</h2>
+            <p id="traditionsText1">Традиции – это живой мост между прошлым и настоящим, который соединяет поколения, передавая накопленную мудрость, культурные коды и духовные ценности. В многонациональном обществе, подобном Казахстану, традиции играют особенно важную роль – они становятся основой взаимопонимания и уважения между различными этническими группами.</p>
+            
+            <p id="traditionsText2">Каждая традиция – это своего рода генетическая память народа, которая хранит его уникальность, мировоззрение и исторический опыт. Передаваясь из поколения в поколение через обряды, праздники, семейные ритуалы, устное творчество и воспитание, традиции формируют культурную идентичность и создают чувство причастности к своему роду, народу, стране.</p>
+            
+            <p id="traditionsText3">В многонациональном Казахстане традиции выполняют особую миссию – они не только сохраняют самобытность каждого народа, но и создают общее культурное пространство взаимного уважения и диалога. Гостеприимство, уважение к старшим, почитание семейных ценностей – эти традиции объединяют различные этносы, демонстрируя, что при всем культурном разнообразии существуют универсальные человеческие ценности.</p>
+        </section>
+
+        <section class="section traditions-comparison">
+            <h2 class="section-title" id="comparisonTitle">Традиции народов Казахстана: Общее и уникальное</h2>
+            <table class="traditions-table">
+                <thead>
+                    <tr>
+                        <th id="tableTradition">Традиция</th>
+                        <th id="tableKazakh">Казахи</th>
+                        <th id="tableRussian">Русские</th>
+                        <th id="tableUzbek">Узбеки</th>
+                        <th id="tableTatar">Татары</th>
+                        <th id="tableGerman">Немцы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="hospitalityRow">Гостеприимство</td>
+                        <td id="kazakhHospitality">Дастархан, угощение гостя с особым почтением</td>
+                        <td id="russianHospitality">Хлебосольство, обильное угощение</td>
+                        <td id="uzbekHospitality">Чайхана, традиция совместной трапезы</td>
+                        <td id="tatarHospitality">Обильное угощение, уважение к госию</td>
+                        <td id="germanHospitality">Традиция Kaffee und Kuchen (кофе и пирог)</td>
+                    </tr>
+                    <tr>
+                        <td id="weddingRow">Свадебные обряды</td>
+                        <td id="kazakhWedding">Үйлену тойы, калым, көрімдік</td>
+                        <td id="russianWedding">Венчание, приданое, обряд благословения</td>
+                        <td id="uzbekWedding">Никох туйи, семейные торжества</td>
+                        <td id="tatarWedding">Никах, сохранение религиозных традиций</td>
+                        <td id="germanWedding">Церковное бракосочетание, подарки молодым</td>
+                    </tr>
+                    <tr>
+                        <td id="childhoodRow">Воспитание детей</td>
+                        <td id="kazakhChildhood">Уважение к старшим, почитание предков</td>
+                        <td id="russianChildhood">Трудолюбие, семейные ценности</td>
+                        <td id="uzbekChildhood">Почтение родителей, коллективное воспитание</td>
+                        <td id="tatarChildhood">Строгое воспитание, уважение к традициям</td>
+                        <td id="germanChildhood">Дисциплина, образование, самостоятельность</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section traditions-video">
+            <h2 class="section-title" id="videoTitle">Традиции народов Казахстана</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/2H4Ua30A9D8" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+            </section>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            ru: {
+                pageTitle: 'Связь традиций',
+                traditionsTitle: 'Традиции: Духовная связь поколений',
+                traditionsText1: 'Традиции – это живой мост между прошлым и настоящим, который соединяет поколения, передавая накопленную мудрость, культурные коды и духовные ценности. В многонациональном обществе, подобном Казахстану, традиции играют особенно важную роль – они становятся основой взаимопонимания и уважения между различными этническими группами.',
+                traditionsText2: 'Каждая традиция – это своего рода генетическая память народа, которая хранит его уникальность, мировоззрение и исторический опыт. Передаваясь из поколения в поколение через обряды, праздники, семейные ритуалы, устное творчество и воспитание, традиции формируют культурную идентичность и создают чувство причастности к своему роду, народу, стране.',
+                traditionsText3: 'В многонациональном Казахстане традиции выполняют особую миссию – они не только сохраняют самобытность каждого народа, но и создают общее культурное пространство взаимного уважения и диалога. Гостеприимство, уважение к старшим, почитание семейных ценностей – эти традиции объединяют различные этносы, демонстрируя, что при всем культурном разнообразии существуют универсальные человеческие ценности.',
+                comparisonTitle: 'Традиции народов Казахстана: Общее и уникальное',
+                tableTradition: 'Традиция',
+                tableKazakh: 'Казахи',
+                tableRussian: 'Русские',
+                tableUzbek: 'Узбеки',
+                tableTatar: 'Татары',
+                tableGerman: 'Немцы',
+                hospitalityRow: 'Гостеприимство',
+                kazakhHospitality: 'Дастархан, угощение гостя с особым почтением',
+                russianHospitality: 'Хлебосольство, обильное угощение',
+                uzbekHospitality: 'Чайхана, традиция совместной трапезы',
+                tatarHospitality: 'Обильное угощение, уважение к гостю',
+                germanHospitality: 'Традиция Kaffee und Kuchen (кофе и пирог)',
+                weddingRow: 'Свадебные обряды',
+                kazakhWedding: 'Үйлену тойы, калым, көрімдік',
+                russianWedding: 'Венчание, приданое, обряд благословения',
+                uzbekWedding: 'Никох туйи, семейные торжества',
+                tatarWedding: 'Никах, сохранение религиозных традиций',
+                germanWedding: 'Церковное бракосочетание, подарки молодым',
+                childhoodRow: 'Воспитание детей',
+                kazakhChildhood: 'Уважение к старшим, почитание предков',
+                russianChildhood: 'Трудолюбие, семейные ценности',
+                uzbekChildhood: 'Почтение родителей, коллективное воспитание',
+                tatarChildhood: 'Строгое воспитание, уважение к традициям',
+                germanChildhood: 'Дисциплина, образование, самостоятельность',
+                videoTitle: 'Традиции народов Казахстана',
+                videoNote: 'Внимание: Видео будет добавлено позже. В настоящее время плеер не может загрузить контент.'
+            },
+            en: {
+                pageTitle: 'Tradition Connections',
+                traditionsTitle: 'Traditions: A Spiritual Connection Between Generations',
+                traditionsText1: 'Traditions are a living bridge between the past and present, connecting generations by transmitting accumulated wisdom, cultural codes, and spiritual values. In a multinational society like Kazakhstan, traditions play a particularly important role – they become the foundation of mutual understanding and respect between different ethnic groups.',
+                traditionsText2: 'Each tradition is a kind of genetic memory of a people that preserves its uniqueness, worldview, and historical experience. Passed down from generation to generation through rituals, holidays, family ceremonies, oral creativity, and upbringing, traditions form cultural identity and create a sense of belonging to one\'s clan, people, and country.',
+                traditionsText3: 'In multinational Kazakhstan, traditions fulfill a special mission – they not only preserve the identity of each people but also create a common cultural space of mutual respect and dialogue. Hospitality, respect for elders, and reverence for family values are traditions that unite different ethnic groups, demonstrating that universal human values exist despite cultural diversity.',
+                comparisonTitle: 'Traditions of Kazakhstan\'s Peoples: Common and Unique',
+                tableTradition: 'Tradition',
+                tableKazakh: 'Kazakhs',
+                tableRussian: 'Russians',
+                tableUzbek: 'Uzbeks',
+                tableTatar: 'Tatars',
+                tableGerman: 'Germans',
+                hospitalityRow: 'Hospitality',
+                kazakhHospitality: 'Dastarkhan, honoring guests with special respect',
+                russianHospitality: 'Breadth of hospitality, abundant treats',
+                uzbekHospitality: 'Chaikhana, tradition of shared meals',
+                tatarHospitality: 'Abundant treats, respect for guests',
+                germanHospitality: 'Kaffee und Kuchen tradition (coffee and cake)',
+                weddingRow: 'Wedding Ceremonies',
+                kazakhWedding: 'Üylenw toyi, kalym, körimdiк',
+                russianWedding: 'Church wedding, dowry, blessing ceremony',
+                uzbekWedding: 'Nikoh tuyi, family celebrations',
+                tatarWedding: 'Nikah, preserving religious traditions',
+                germanWedding: 'Church wedding, gifts for newlyweds',
+                childhoodRow: 'Child Upbringing',
+                kazakhChildhood: 'Respect for elders, honoring ancestors',
+                russianChildhood: 'Diligence, family values',
+                uzbekChildhood: 'Reverence for parents, collective upbringing',
+                tatarChildhood: 'Strict upbringing, respect for traditions',
+                germanChildhood: 'Discipline, education, independence',
+                videoTitle: 'Traditions of Kazakhstan\'s Peoples',
+                videoNote: 'Attention: Video will be added later. Currently, the player cannot load content.'
+            },
+            kk: {
+                pageTitle: 'Салт-дәстүр сабақтастығы',
+                traditionsTitle: 'Дәстүрлер: Ұрпақтар арасындағы рухани байланыс',
+                traditionsText1: 'Дәстүрлер – бұл өткен мен қазіргінің арасындағы тірі көпір, ол ұрпақтарды жинақталған даналық, мәдени кодтар мен рухани құндылықтарды беру арқылы байланыстырады. Қазақстандай көп ұлтты қоғамда дәстүрлер ерекше маңызды рөл атқарады – олар түрлі этникалық топтар арасындағы өзара түсіністік пен сыйластықтың негізі болып табылады.',
+                traditionsText2: 'Әр дәстүр – бұл халықтың өзінің ерекшелігін, дүниетанымын және тарихи тәжірибесін сақтайтын бір түрлі генетикалық жады. Ұрпақтан-ұрпаққа рәсімдер, мерекелер, отбасылық рәсімдер, ауызша шығармашылық және тәрбие арқылы берілетін дәстүрлер мәдени бірегейлікті қалыптастырады және адамның өз руына, халқына, еліне қатыстылық сезімін туғызады.',
+                traditionsText3: 'Көп ұлтты Қазақстанда дәстүрлер арнайы миссияны орындайды – олар тек әрбір халықтың бірегейлігін сақтап қана қоймай, өзара сыйластық пен диалогтың ортақ мәдени кеңістігін де жасайды. Қонақжайлылық, үлкендерге деген құрмет, отбасылық құндылықтарды қастерлеу – бұл дәстүрлер түрлі этностарды біріктіреді, мәдени алуан түрлілікке қарамастан, универсалды адамзаттық құндылықтар бар екенін көрсетеді.',
+                comparisonTitle: 'Қазақстан халықтарының дәстүрлері: Ортақ және бірегей',
+                tableTradition: 'Дәстүр',
+                tableKazakh: 'Қазақтар',
+                tableRussian: 'Орыстар',
+                tableUzbek: 'Өзбектер',
+                tableTatar: 'Татарлар',
+                tableGerman: 'Немістер',
+                hospitalityRow: 'Қонақжайлылық',
+                kazakhHospitality: 'Дастархан, қонақты ерекше сыйлау',
+                russianHospitality: 'Мейірімділік, мол дастархан',
+                uzbekHospitality: 'Шайхана, бірге тамақтану дәстүрі',
+                tatarHospitality: 'Мол дастархан, қонаққа деген құрмет',
+                germanHospitality: 'Kaffee und Kuchen дәстүрі (кофе және торт)',
+                weddingRow: 'Неке қию рәсімдері',
+                kazakhWedding: 'Үйлену тойы, қалым, көрімдік',
+                russianWedding: 'Шіркеу некесі, жасау, қолдау рәсімі',
+                uzbekWedding: 'Никах тойы, отбасылық мерекелер',
+                tatarWedding: 'Никах, діни дәстүрлерді сақтау',
+                germanWedding: 'Шіркеу некесі, жас отауларға сыйлықтар',
+                childhoodRow: 'Балаларды тәрбиелеу',
+                kazakhChildhood: 'Үлкендерге құрмет, аталарды қастерлеу',
+                russianChildhood: 'Еңбекқорлық, отбасылық құндылықтар',
+                uzbekChildhood: 'Ата-анаға деген қошеметтілік, ұжымдық тәрбие',
+                tatarChildhood: 'Қатаң тәрбие, дәстүрлерге деген сыйластық',
+                germanChildhood: 'Тәртіп, білім, дербестік',
+                videoTitle: 'Қазақстан халықтарының дәстүрлері',
+                videoNote: 'Назар аударыңыз: Бейне кейінірек қосылады. Қазіргі уақытта ойнатқыш контентті жүктей алмайды.'
+            }
+        };
+
+        // Объект с поддерживаемыми языками
+const supportedLanguages = ['ru', 'en', 'kk'];
+
+// Функция автоматического определения языка
+function detectLanguage() {
+    let browserLang = navigator.language.slice(0, 2); // Получаем первые 2 буквы (например, "ru", "en")
+    
+    // Если язык поддерживается, устанавливаем его, иначе используем русский
+    let defaultLang = supportedLanguages.includes(browserLang) ? browserLang : 'ru';
+
+    changeLanguage(defaultLang);
+}
+
+
+// Language change function
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    document.getElementById('htmlRoot').lang = lang;
+
+    // Update page title
+    document.title = translations[lang].pageTitle;
+
+    // Update all translatable elements
+    const translatableIds = [
+        'pageTitle', 
+        'traditionsTitle', 
+        'traditionsText1', 
+        'traditionsText2', 
+        'traditionsText3',
+        'comparisonTitle',
+        'tableTradition', 
+        'tableKazakh', 
+        'tableRussian', 
+        'tableUzbek', 
+        'tableTatar', 
+        'tableGerman',
+        'hospitalityRow',
+        'kazakhHospitality',
+        'russianHospitality',
+        'uzbekHospitality',
+        'tatarHospitality',
+        'germanHospitality',
+        'weddingRow',
+        'kazakhWedding',
+        'russianWedding',
+        'uzbekWedding',
+        'tatarWedding',
+        'germanWedding',
+        'childhoodRow',
+        'kazakhChildhood',
+        'russianChildhood',
+        'uzbekChildhood',
+        'tatarChildhood',
+        'germanChildhood',
+        'videoTitle',
+        'videoNote'
+    ];
+
+    translatableIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = translations[lang][id];
+        }
+    });
+
+    // Сделаем кнопку "Назад" всегда видимой
+    document.getElementById('backButton').style.display = 'block';
+}
+
+// Back button function
+function goBack() {
+    window.history.back();
+}
+
+// При загрузке страницы убедимся, что кнопка видна
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('backButton').style.display = 'block';
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тілім - тірегім | My Language is My Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077be;
+            --secondary-gold: #ffd700;
+            --text-dark: #333;
+            --background-light: #f4f4f4;
+            --hover-color: rgba(0, 119, 190, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Navigation */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+        color: white;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    /* Дополнительные стили для кнопок */
+    .language-btn {
+        background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+    }
+
+    .language-btn:hover {
+        background: rgba(255,255,255,0.3);
+    }
+
+    /* Кнопка назад */
+    button {
+        background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .kazakh-pattern {
+            background-size: 40px 40px;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="kazakh-pattern">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold" id="page-title">
+                    Тілім - тірегім
+                </h1>
+            </div>
+            <div class="flex space-x-2">
+                <button class="language-btn px-3 py-1 rounded bg-white/20 hover:bg-white/30" data-lang="kk">Қаз</button>
+                <button class="language-btn px-3 py-1 rounded bg-white/20 hover:bg-white/30" data-lang="ru">Рус</button>
+                <button class="language-btn px-3 py-1 rounded bg-white/20 hover:bg-white/30" data-lang="en">Eng</button>
+            </div>
+            <button onclick="window.history.back()" class="bg-white text-blue-600 px-4 py-2 rounded">
+                ← Назад
+            </button>
+        </div>
+    </nav>
+
+    <!-- First Section: Historical Significance -->
+    <section class="container mx-auto my-8 section-reveal" id="historical-section">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-600" id="section-1-title">
+                Қазақ тілі: ұлттық код және рухани қазына
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4" id="subsection-1-title">
+                        Қазақ тілінің тарихи маңызы
+                    </h3>
+                    <p id="subsection-1-text" class="text-gray-700">
+                        Қазақ тілі – біздің ұлттық болмысымыздың айнасы, рухани құндылықтарымыздың алтын қазығы. Бұл тіл тек қарым-қатынас құралы ғана емес, ол халқымыздың тарихын, мәдениетін, дүниетанымын, өзіндік ерекшелігін сақтап келген мәңгілік мұра. Әрбір сөзінде ұрпақтар сабақтастығы, халықтың тағдыры мен арманының ізі бар. Қазақ тілі ғасырлар бойы ұлттың жаны болып, мәдениетіміздің негізін қалап, халықтың ой-санасының көрінісіне айналды. Ол тек өткенді ғана емес, қазіргі кезді де бейнелеп, болашаққа аманат қалдыратын ұлы күшке ие. Қазақ тілінде әр дыбыстың, әр сөздің терең мағынасы бар, олар халықтың салт-дәстүрлерін, әдет-ғұрыптарын, өмір сүру тәсілдерін ұрпақтан-ұрпаққа жеткізіп отырды. Қазіргі таңда қазақ тілі елімізде мемлекеттік мәртебеге ие болғанымен, оның мәні мен маңызы тек қана тілдік қатынас аясымен шектелмейді. Ол ұлттың рухани байлығы, біздің болмысымыздың негізгі тұғыры болып табылады.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4" id="subsection-2-title">
+                        Тіл – ұлттық код, рухани қазына
+                    </h3>
+                    <p id="subsection-2-text" class="text-gray-700">
+                        Тіл – ұлттың жан дүниесінің айнасы, оның рухани әлемі мен мәдени болмысының тірегі. Қазақ тілі – біздің ұлттық кодымыз, жүректің тілі, ғасырлар бойы сақталған ұлы мұрамыз. Ол тек қарым-қатынас құралы ғана емес, халықтың өмір сүру философиясының, дүниетанымының негізі болып табылады. Қазақ тілінде әрбір сөздің өз тарихы, мәні бар, ол біздің салт-дәстүрімізді, ұрпақтан-ұрпаққа берілетін асыл мұраларымызды айқын көрсетеді. Қазақ тілі арқылы біз ұлт ретінде бірігіп, өзіміздің болмысымызды танимыз және болашағымызды анықтаймыз. Қазақ тілі – біздің рухани байлығымыз, ұлттық бірегейлігіміздің негізі. Ол біздің өткенімізді, қазіргіімізді және болашағымызды байланыстырып, ұрпақтар сабақтастығын қамтамасыз етеді. Тілдің мәні терең, ол ұлттың жанын, жүрегін, тарихын бейнелейтін ерекше күшке ие.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Section: Interesting Facts -->
+    <section class="container mx-auto my-8 section-reveal" id="facts-section">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-600" id="facts-title">
+                Қазақ тілі туралы қызықты фактілер
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6" id="facts-container">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="fact-1-title">🌍 Сөйлеушілер саны</h3>
+                    <p id="fact-1-text">Қазақ тілінде дүние жүзінде шамамен 20 миллион адам сөйлейді.</p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="fact-2-title">📜 Алфавит тарихы</h3>
+                    <ul class="list-disc pl-5" id="fact-2-text">
+                        <li>Төте жазу (арабша): 19 ғасыр</li>
+                        <li>Кириллица: 1940-2017 жж.</li>
+                        <li>Латын графикасы: 2017 жылдан бастап</li>
+                    </ul>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="fact-3-title">🔤 Тіл ерекшеліктері</h3>
+                    <p id="fact-3-text">Қазақ тілінде 42 дыбыс, оның ішінде 9 дауысты және 33 дауыссыз дыбыс бар.</p>
+                </div>
+            </div>            
+            </div>
+        </div>
+    </section>
+
+<!-- Third Section: Video -->
+<section class="container mx-auto my-8 section-reveal" id="video-section">
+    <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold mb-6 text-blue-600" id="video-title">
+            Қазақ тілі – болашақтың тілі
+        </h2>
+        
+        <div class="flex justify-center">
+            <iframe 
+                width="1200" 
+                height="500" 
+                src="https://www.youtube.com/embed/JmkxKHYQ_J4" 
+                title="Қазақ тілі жайлы бейне" 
+                frameborder="0" 
+                allowfullscreen
+                class="rounded-lg shadow-lg"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+
+<!-- Fourth Section: Trilingual Policy -->
+<section class="container mx-auto my-8 section-reveal" id="policy-section">
+    <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold mb-6 text-blue-600" id="policy-title">
+            Қазақстандағы үштілділік саясаты
+        </h2>
+        
+        <p class="text-gray-700 mb-6" id="policy-description">
+            Қазақстанда үштілділік саясаты 2007 жылы енгізілді. Бұл реформа қазақ тілін мемлекеттік тіл ретінде нығайтуға, орыс тілін ұлтаралық қатынас құралы ретінде сақтауға және ағылшын тілін жаhандық экономика мен білім беру саласында қолдануды дамытуға бағытталған. Үш тілді меңгеру – Қазақстанның болашағы үшін маңызды қадам.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-blue-100 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4" id="state-lang-title">🇰🇿 Мемлекеттік тіл</h3>
+                <p id="state-lang-text">Қазақ тілі – мемлекеттік тіл, ұлттық бірегейліктің негізі.</p>
+            </div>
+            <div class="bg-yellow-100 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4" id="interlang-title">🌐 Ынтымақтастық тілі</h3>
+                <p id="interlang-text">Орыс тілі – ұлтаралық қатынас тілі, байланыс құралы.</p>
+            </div>
+            <div class="bg-green-100 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4" id="global-lang-title">🚀 Жаhандық тіл</h3>
+                <p id="global-lang-text">Ағылшын тілі – экономика, технология және білім беру тілі.</p>
+            </div>
+        </div>
+
+        <div class="mt-8 italic text-gray-600 text-center">
+            <blockquote id="policy-quote">
+                "Тіл – халықтың рухани коды, оны сақтау – біздің міндетіміз." 
+                - Нұрсұлтан Назарбаев
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+    <script>
+        const translations = {
+            kk: {
+                pageTitle: 'Тілім - тірегім',
+                section1Title: 'Қазақ тілі: ұлттық код және рухани қазына',
+                section1Subtitle1: 'Қазақ тілінің тарихи маңызы',
+                section1Subtitle1Text: 'Қазақ тілі – біздің ұлттық болмысымыздың айнасы, рухани құндылықтарымыздың алтын қазығы. Бұл тіл тек қарым-қатынас құралы ғана емес, ол халқымыздың тарихын, мәдениетін, дүниетанымын, өзіндік ерекшелігін сақтап келген мәңгілік мұра. Әрбір сөзінде ұрпақтар сабақтастығы, халықтың тағдыры мен арманының ізі бар. Қазақ тілі ғасырлар бойы ұлттың жаны болып, мәдениетіміздің негізін қалап, халықтың ой-санасының көрінісіне айналды. Ол тек өткенді ғана емес, қазіргі кезді де бейнелеп, болашаққа аманат қалдыратын ұлы күшке ие. Қазақ тілінде әр дыбыстың, әр сөздің терең мағынасы бар, олар халықтың салт-дәстүрлерін, әдет-ғұрыптарын, өмір сүру тәсілдерін ұрпақтан-ұрпаққа жеткізіп отырды. Қазіргі таңда қазақ тілі елімізде мемлекеттік мәртебеге ие болғанымен, оның мәні мен маңызы тек қана тілдік қатынас аясымен шектелмейді. Ол ұлттың рухани байлығы, біздің болмысымыздың негізгі тұғыры болып табылады.',
+                section1Subtitle2: 'Тіл – ұлттық код, рухани қазына',
+                section1Subtitle2Text: 'Тіл – ұлттың жан дүниесінің айнасы, оның рухани әлемі мен мәдени болмысының тірегі. Қазақ тілі – біздің ұлттық кодымыз, жүректің тілі, ғасырлар бойы сақталған ұлы мұрамыз. Ол тек қарым-қатынас құралы ғана емес, халықтың өмір сүру философиясының, дүниетанымының негізі болып табылады. Қазақ тілінде әрбір сөздің өз тарихы, мәні бар, ол біздің салт-дәстүрімізді, ұрпақтан-ұрпаққа берілетін асыл мұраларымызды айқын көрсетеді. Қазақ тілі арқылы біз ұлт ретінде бірігіп, өзіміздің болмысымызды танимыз және болашағымызды анықтаймыз. Қазақ тілі – біздің рухани байлығымыз, ұлттық бірегейлігіміздің негізі. Ол біздің өткенімізді, қазіргіімізді және болашағымызды байланыстырып, ұрпақтар сабақтастығын қамтамасыз етеді. Тілдің мәні терең, ол ұлттың жанын, жүрегін, тарихын бейнелейтін ерекше күшке ие.',
+                factsTitle: 'Қазақ тілі туралы қызықты фактілер',
+                videoTitle: 'Қазақ тілі – болашақтың тілі',
+                policyTitle: 'Қазақстандағы үштілділік саясаты',
+                policyQuote: '"Тіл – халықтың рухани коды, оны сақтау – біздің міндетіміз." - Нұрсұлтан Назарбаев',
+                fact1Title: '🌍 Сөйлеушілер саны',
+                fact1Text: 'Қазақ тілінде дүние жүзінде шамамен 20 миллион адам сөйлейді.',
+                fact2Title: '📜 Алфавит тарихы',
+                fact2Text: `<ul><li>- Төте жазу (арабша): 19 ғасыр</li><li>- Кириллица: 1940-2017 жж.</li><li>- Латын графикасы: 2017 жылдан бастап</li></ul>`,
+                fact3Title: '🔤 Тіл ерекшеліктері',
+                fact3Text: 'Қазақ тілінде 42 дыбыс, оның ішінде 9 дауысты және 33 дауыссыз дыбыс бар.',
+                policyDescription: `Қазақстанда үштілділік саясаты 2007 жылы қабылданып, елдегі тілдік орта мен білім беру жүйесінде терең өзгерістер енгізді. Бұл бастама мемлекет басшылығының Қазақстанның жаhандық аренада бәсекеге қабілеттілігін арттыруға және көптілді қоғам құруға деген ұмтылысының нәтижесі болды.  
+
+Үштілділік саясатының негізгі мақсаты – қазақ тілінің мәртебесін күшейтіп, оны мемлекеттік басқару, ғылым, мәдениет және күнделікті өмірдің барлық салаларында кеңінен қолданылатын негізгі тілге айналдыру. Сонымен қатар, орыс тілі – тарихи қалыптасқан ұлтаралық қатынас құралы ретінде сақталып, Қазақстандағы этностар арасындағы өзара түсіністік пен ынтымақтастықты қамтамасыз етеді. Ағылшын тілі болса, жаңа технологиялар, халықаралық сауда және ғылыми зерттеулер тілі ретінде қарастырылып, елдің инновациялық дамуына жол ашады.  
+
+Үштілділік саясаты білім беру саласында белсенді түрде жүзеге асырылуда. Мектептерде, колледждер мен жоғары оқу орындарында пәндерді үш тілде оқыту жүйесі енгізіліп, болашақ мамандардың халықаралық деңгейде білім алуына мүмкіндік жасалды. Бұл реформа жастардың зияткерлік әлеуетін дамытып, оларға әлемдік экономика мен ғылымда бәсекеге қабілетті болуға жол ашады.  
+
+Көптілділік – Қазақстанның тұрақты дамуы мен жаһандану үрдісіне бейімделуінің маңызды факторы. Үш тілді меңгеру – әрбір қазақстандық үшін жаңа мүмкіндіктерге жол ашып, елдің экономикалық және мәдени интеграциясын жеделдетеді. Бұл саясат мемлекеттің бірлігі мен тұрақтылығын нығайтып, Қазақстанды халықаралық қауымдастықтағы беделді елдердің қатарына қосуға бағытталған.`,
+                stateLangTitle: '🇰🇿 Мемлекеттік тіл',
+                stateLangText: 'Қазақ тілі – мемлекеттік тіл, ұлттық бірегейліктің негізі.',
+                interLangTitle: '🌐 Ынтымақтастық тілі',
+                interLangText: 'Орыс тілі – ұлтаралық қатынас тілі, байланыс құралы.',
+                globalLangTitle: '🚀 Жаhандық тіл',
+                globalLangText: 'Ағылшын тілі – экономика, технология және білім беру тілі.',
+            },
+            ru: {
+                pageTitle: 'Язык - моя опора',
+                section1Title: 'Казахский язык: национальный код и духовное сокровище',
+                section1Subtitle1: 'Историческое значение казахского языка',
+                section1Subtitle1Text: 'Казахский язык – это зеркало нашей национальной сущности, золотой фундамент нашего духовного наследия. Этот язык не просто средство общения, он является важнейшей частью нашего культурного и исторического прошлого. В каждом слове, в каждой букве скрыта история народа, его мечты, устремления и судьбы. Казахский язык веками сохранял и передавал мудрость предков, обычаи, традиции, и, что важнее всего, национальную идентичность. Это язык, который связывает поколения, создает непрерывную нить между прошлым, настоящим и будущим. Он формирует культурную осознанность народа, объединяет нас и является важнейшим элементом в формировании нашего национального сознания. Сегодня казахский язык — это не только официальный язык в Казахстане, но и символ единства, гордости и силы нашей нации.',
+                section1Subtitle2: 'Язык – национальный код, духовное сокровище',
+                section1Subtitle2Text: 'Язык – это душа нации, ее внутренний мир, основа ее будущего. Казахский язык – это наш национальный код, духовное богатство, язык сердца. Это не просто средство общения, а важнейшая составляющая нашей культурной и исторической идентичности. Казахский язык — это ключ к нашему прошлому, настоящему и будущему, он сохраняет в себе народную мудрость, традиции и обычаи. Через этот язык мы передаем наши ценности, нашу духовную культуру и уникальность. Казахский язык является основой нашей национальной идентичности, символом нашего единства и силы как народа. Он связывает поколения, сохраняя нашу историю и определяя наше будущее.',
+                factsTitle: 'Интересные факты о казахском языке',
+                videoTitle: 'Казахский язык – язык будущего',
+                policyTitle: 'Трехъязычная политика Казахстана',
+                policyQuote: '"Язык – духовный код народа, его сохранение – наша обязанность." - Нурсултан Назарбаев',
+                fact1Title: '🌍 Количество носителей',
+                fact1Text: 'На казахском языке говорит около 20 миллионов человек по всему миру.',
+                fact2Title: '📜 История алфавита',
+                fact2Text: `<ul><li>- Төте жазу (арабша): 19 век</li><li>- Кириллица: 1940-2017 годы</li><li>- Латиница: с 2017 года</li></ul>`,
+                fact3Title: '🔤 Особенности языка',
+                fact3Text: 'В казахском языке 42 звука, в том числе 9 гласных и 33 согласных.',
+                policyDescription: `Политика трехъязычия в Казахстане была принята в 2007 году, что привело к глубоким изменениям в языковой среде и системе образования страны. Эта инициатива стала результатом стремления руководства государства повысить конкурентоспособность Казахстана на мировой арене и сформировать многоязычное общество.  
+
+Основной целью политики трехъязычия является укрепление статуса казахского языка, чтобы он стал основным языком государственного управления, науки, культуры и повседневной жизни. В то же время русский язык сохраняет свою роль как средство межнационального общения, способствующее взаимопониманию и сотрудничеству между этносами Казахстана. Английский язык рассматривается как язык новых технологий, международной торговли и научных исследований, открывая стране возможности инновационного развития.  
+
+Политика трехъязычия активно реализуется в сфере образования. В школах, колледжах и вузах внедрена система преподавания предметов на трех языках, что позволяет будущим специалистам получать международный уровень знаний. Эта реформа развивает интеллектуальный потенциал молодежи и способствует их конкурентоспособности в мировой экономике и науке.  
+
+Многоязычие – это важный фактор устойчивого развития Казахстана и его адаптации к процессам глобализации. Владение тремя языками открывает перед каждым казахстанцем новые возможности, ускоряет экономическую и культурную интеграцию страны. Эта политика укрепляет единство и стабильность государства, а также способствует вхождению Казахстана в число авторитетных стран международного сообщества.`,
+                stateLangTitle: '🇰🇿 Государственный язык',
+                stateLangText: 'Казахский язык – государственный язык, основа национальной идентичности.',
+                interLangTitle: '🌐 Язык сотрудничества',
+                interLangText: 'Русский язык – язык межнационального общения, средство связи.',
+                globalLangTitle: '🚀 Глобальный язык',
+                globalLangText: 'Английский язык – язык экономики, технологий и образования.',
+            },
+            en: {
+                pageTitle: 'My Language is My Support',
+                section1Title: 'Kazakh Language: National Code and Spiritual Treasure',
+                section1Subtitle1: 'Historical Significance of the Kazakh Language',
+                section1Subtitle1Text: 'The Kazakh language is the mirror of our national identity, the golden foundation of our spiritual heritage. It is not merely a tool for communication, but a vital part of our cultural and historical past. In every word, in every sound, lies the history of our people, their dreams, aspirations, and fate. For centuries, the Kazakh language has preserved and transmitted the wisdom of our ancestors, customs, traditions, and most importantly, our national identity. It is a language that connects generations, creating an unbroken thread between the past, present, and future. This language shapes our cultural awareness, unites us, and is an essential element in the formation of our national consciousness. Today, the Kazakh language is not just the official language of Kazakhstan, but also a symbol of unity, pride, and the strength of our nation.',
+                section1Subtitle2: 'Language – National Code, Spiritual Treasure',
+                section1Subtitle2Text: 'Language is the soul of a nation, the essence of its being and its future. The Kazakh language is our national code, our spiritual treasure, and the language of the heart. It is not just a means of communication but the most important part of our cultural and historical identity. The Kazakh language carries the wisdom of our ancestors, our traditions, and values. Through this language, we pass on our deep-rooted cultural heritage and spiritual richness. The Kazakh language is the foundation of our national identity, a symbol of unity, pride, and strength. It connects generations, preserving our history and shaping our future.',
+                factsTitle: 'Interesting Facts about the Kazakh Language',
+                videoTitle: 'Kazakh Language – Language of the Future',
+                policyTitle: 'Kazakhstan\'s Trilingual Policy',
+                policyQuote: '"Language is the spiritual code of the people, preserving it is our duty." - Nursultan Nazarbayev',
+                fact1Title: '🌍 Number of Speakers',
+                fact1Text: 'Around 20 million people speak Kazakh worldwide.',
+                fact2Title: '📜 History of the Alphabet',
+                fact2Text: `<ul><li>- Arabic Script: 19th century</li><li>- Cyrillic: 1940-2017</li><li>- Latin Script: since 2017</li></ul>`,
+                fact3Title: '🔤 Language Features',
+                fact3Text: 'The Kazakh language has 42 sounds, including 9 vowels and 33 consonants.',
+                policyDescription: `Kazakhstan's trilingual policy was introduced in 2007, bringing significant changes to the country's linguistic environment and education system. This initiative reflects the government's ambition to enhance Kazakhstan's global competitiveness and foster a multilingual society.  
+
+The main goal of the trilingual policy is to strengthen the status of the Kazakh language, making it the primary language of government, science, culture, and daily life. At the same time, Russian is preserved as a means of interethnic communication, fostering mutual understanding and cooperation among Kazakhstan's ethnic groups. English is recognized as the language of new technologies, international trade, and scientific research, opening the door to the country's innovative development.  
+
+The trilingual policy is actively implemented in the education sector. Schools, colleges, and universities have introduced a system of teaching subjects in three languages, enabling future professionals to acquire international-level knowledge. This reform enhances young people's intellectual potential and prepares them to compete in the global economy and scientific fields.  
+
+Multilingualism is a key factor in Kazakhstan's sustainable development and adaptation to globalization. Mastering three languages opens new opportunities for every Kazakhstani citizen, accelerating the country's economic and cultural integration. This policy strengthens national unity and stability, positioning Kazakhstan among the world's most respected nations.`,
+   stateLangTitle: '🇰🇿 State Language',
+                stateLangText: 'Kazakh is the state language, the foundation of national identity.',
+                interLangTitle: '🌐 Language of Cooperation',
+                interLangText: 'Russian is the language of interethnic communication, a means of connection.',
+                globalLangTitle: '🚀 Global Language',
+                globalLangText: 'English is the language of economy, technology, and education.',
+            }
+        };
+
+        function updateLanguage(lang) {
+    document.getElementById('page-title').textContent = translations[lang].pageTitle;
+    document.getElementById('section-1-title').textContent = translations[lang].section1Title;
+
+    document.getElementById('subsection-1-title').textContent = translations[lang].section1Subtitle1;
+    document.getElementById('subsection-1-text').textContent = translations[lang].section1Subtitle1Text;
+
+    document.getElementById('subsection-2-title').textContent = translations[lang].section1Subtitle2;
+    document.getElementById('subsection-2-text').textContent = translations[lang].section1Subtitle2Text;
+
+    document.getElementById('facts-title').textContent = translations[lang].factsTitle;
+    document.getElementById('video-title').textContent = translations[lang].videoTitle;
+    document.getElementById('policy-title').textContent = translations[lang].policyTitle;
+    document.getElementById('policy-quote').textContent = translations[lang].policyQuote;
+
+    // Обновление списка с фактами
+    document.getElementById('fact-1-title').textContent = translations[lang].fact1Title;
+    document.getElementById('fact-1-text').innerHTML = translations[lang].fact1Text;
+
+    document.getElementById('fact-2-title').textContent = translations[lang].fact2Title;
+    document.getElementById('fact-2-text').innerHTML = translations[lang].fact2Text;
+
+    document.getElementById('fact-3-title').textContent = translations[lang].fact3Title;
+    document.getElementById('fact-3-text').innerHTML = translations[lang].fact3Text;
+
+    // Добавляем обновление политики трех языков
+    document.getElementById('policy-description').textContent = translations[lang].policyDescription;
+
+    document.getElementById('state-lang-title').textContent = translations[lang].stateLangTitle;
+    document.getElementById('state-lang-text').textContent = translations[lang].stateLangText;
+
+    document.getElementById('interlang-title').textContent = translations[lang].interLangTitle;
+    document.getElementById('interlang-text').textContent = translations[lang].interLangText;
+
+    document.getElementById('global-lang-title').textContent = translations[lang].globalLangTitle;
+    document.getElementById('global-lang-text').textContent = translations[lang].globalLangText;
+}
+
+
+        // Language Switcher
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateLanguage(lang);
+                localStorage.setItem('selectedLanguage', lang);
+            });
+        });
+
+        // Section Reveal Animation
+        function revealSections() {
+            const sections = document.querySelectorAll('.section-reveal');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+
+        // Set Language on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 
+                              (navigator.language || navigator.userLanguage).split('-')[0];
+            
+            const validLangs = ['kk', 'ru', 'en'];
+            const lang = validLangs.includes(savedLang) ? savedLang : 'kk';
+            
+            updateLanguage(lang);
+        });
+    </script>
+</body>
+</html>

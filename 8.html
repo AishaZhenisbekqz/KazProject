@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="kk" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диалог культур: Национальные костюмы</title>
+    <style>
+        :root {
+            --primary-blue: #0077be;
+            --secondary-gold: #ffd700;
+            --text-dark: #333;
+            --background-light: #f4f4f4;
+            --hover-color: rgba(0, 119, 190, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+            color: white;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-buttons button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .language-buttons button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button {
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--hover-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-gold);
+            padding-bottom: 10px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .costume-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .costume-card:hover {
+            transform: scale(1.05);
+        }
+
+        .costume-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .costume-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .costume-card:hover .costume-overlay {
+            transform: translateY(0);
+        }
+
+        .timeline {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 200px;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-item img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+/* Добавьте эти стили в существующий <style> блок */
+    .modal-content img {
+    max-width: 300px;  /* Ограничим максимальную ширину */
+    max-height: 300px; /* Ограничим максимальную высоту */
+    object-fit: cover; /* Сохраним пропорции изображения */
+    margin: 20px auto; /* Центрируем изображение */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer; /* Показываем, что можно кликнуть для закрытия */
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: default; /* Внутри контента курсор обычный */
+}
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .costume-selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .costume-selector select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--primary-blue);
+        }
+
+        #comparison-result table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #comparison-result th, 
+        #comparison-result td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        #comparison-result th {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .navbar-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .language-buttons {
+                flex-direction: column;
+            }
+
+            .timeline-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title" id="pageTitle">Национальная одежда – зеркало нации</div>
+        <div class="navbar-actions">
+            <div class="language-buttons">
+                <button onclick="changeLanguage('kk')">Қазақша</button>
+                <button onclick="changeLanguage('ru')">Русский</button>
+                <button onclick="changeLanguage('en')">English</button>
+            </div>
+            <button class="back-button" id="backButton" onclick="goBack()">← Назад</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section" id="home">
+            <h2 class="section-title" id="homeTitle">Национальные костюмы: История и Традиции</h2>
+            <p id="homeDescription">
+                Национальная одежда – это отражение культуры и истории каждого народа. Она передавалась из поколения в поколение, сохраняя свою самобытность и уникальные элементы. Казахская национальная одежда создавалась из натуральных материалов, украшалась традиционными узорами и соответствовала образу жизни кочевого народа. Каждая деталь одежды имела свое значение: шапан – символ уважения, саукеле – украшение невесты, камзол – показатель женской элегантности. Национальные костюмы – это не просто элементы моды, но и отражение традиций и духовных ценностей народа.
+            </p>
+        </section>
+
+        <section class="section" id="gallery">
+            <h2 class="section-title" id="galleryTitle">Галерея национальных костюмов</h2>
+            <div class="gallery">
+                <div class="costume-card" data-costume="kazakh">
+                    <img src="k.png" alt="Казахский костюм">
+                    <div class="costume-overlay">
+                        <h3 id="kazakhCostumeTitle">Казахский костюм</h3>
+                        <p id="kazakhCostumeDesc">Традиционный наряд кочевых народов</p>
+                    </div>
+                </div>
+                <div class="costume-card" data-costume="russian">
+                    <img src="o.jpeg" alt="Русский костюм">
+                    <div class="costume-overlay">
+                        <h3 id="russianCostumeTitle">Русский костюм</h3>
+                        <p id="russianCostumeDesc">Народный костюм с богатой историей</p>
+                    </div>
+                </div>
+                <div class="costume-card" data-costume="indian">
+                    <img src="u.jpeg" alt="Индийский костюм">
+                    <div class="costume-overlay">
+                        <h3 id="indianCostumeTitle">Индийский костюм</h3>
+                        <p id="indianCostumeDesc">Яркие цвета и изысканные узоры</p>
+                    </div>
+                </div>
+                <div class="costume-card" data-costume="japan">
+                    <img src="j.jpg" alt="Японский костюм">
+                    <div class="costume-overlay">
+                        <h3 id="japanCostumeTitle">Японский костюм</h3>
+                        <p id="japanCostumeDesc">Элегантность и церемониальность</p>
+                    </div>
+                </div>
+                <div class="costume-card" data-costume="german">
+                    <img src="n.jpeg" alt="Немецкий костюм">
+                    <div class="costume-overlay">
+                        <h3 id="germanCostumeTitle">Немецкий костюм</h3>
+                        <p id="germanCostumeDesc">Точность и традиционность</p>
+                    </div>
+                </div>
+                <div class="costume-card" data-costume="uzbek">
+                    <img src="uz.jpeg" alt="Узбекский костюм">
+                    <div class="costume-overlay">
+                        <h3 id="uzbekCostumeTitle">Узбекский костюм</h3>
+                        <p id="uzbekCostumeDesc">Яркие цвета и богатые узоры</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="timeline">
+            <h2 class="section-title" id="timelineTitle">История национальной одежды</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-period="ancient" onclick="openModal('ancient')">
+                    <img src="e1.jpeg" alt="Древний период">
+                    <h3 id="ancientPeriodTitle">Древний период</h3>
+                    <p id="ancientPeriodDesc">Костюмы кочевых народов</p>
+                </div>
+                <div class="timeline-item" data-period="medieval" onclick="openModal('medieval')">
+                    <img src="e2.jpeg" alt="Средневековье">
+                    <h3 id="medievalPeriodTitle">Средневековье</h3>
+                    <p id="medievalPeriodDesc">Период ханской эпохи</p>
+                </div>
+                <div class="timeline-item" data-period="soviet" onclick="openModal('soviet')">
+                    <img src="e3.jpeg" alt="Советский период">
+                    <h3 id="sovietPeriodTitle">Советский период</h3>
+                    <p id="sovietPeriodDesc">Влияние социалистической культуры</p>
+                </div>
+                <div class="timeline-item" data-period="modern" onclick="openModal('modern')">
+                    <img src="e4.jpeg" alt="Современность">
+                    <h3 id="modernPeriodTitle">Современность</h3>
+                    <p id="modernPeriodDesc">Стилизация и возрождение традиций</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="timelineModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <img id="modalImage" src="" alt="">
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+
+        <section class="section" id="comparison">
+            <h2 class="section-title" id="comparisonTitle">Сравнение национальных костюмов</h2>
+            <div class="costume-selector">
+                <select id="costume1">
+                    <option>Казахский костюм</option>
+                    <option>Русский костюм</option>
+                    <option>Индийский костюм</option>
+                    <option>Японский костюм</option>
+                    <option>Немецкий костюм</option>
+                </select>
+                <select id="costume2">
+                    <option>Русский костюм</option>
+                    <option>Казахский костюм</option>
+                    <option>Индийский костюм</option>
+                    <option>Японский костюм</option>
+                    <option>Немецкий костюм</option>
+                </select>
+            </div>
+            <div id="comparison-result"></div>
+        </section>
+    </div>
+
+    <script>
+        const translations = {
+            ru: {
+                pageTitle: 'Национальная одежда – зеркало нации',
+                homeTitle: 'Национальные костюмы: История и Традиции',
+                homeDescription: 'Национальная одежда – это отражение культуры и истории каждого народа. Она передавалась из поколения в поколение, сохраняя свою самобытность и уникальные элементы. Казахская национальная одежда создавалась из натуральных материалов, украшалась традиционными узорами и соответствовала образу жизни кочевого народа. Каждая деталь одежды имела свое значение: шапан – символ уважения, саукеле – украшение невесты, камзол – показатель женской элегантности. Национальные костюмы – это не просто элементы моды, но и отражение традиций и духовных ценностей народа.',
+                galleryTitle: 'Галерея национальных костюмов',
+                timelineTitle: 'История национальной одежды',
+                comparisonTitle: 'Сравнение национальных костюмов',
+                
+                kazakhCostumeTitle: 'Казахский костюм',
+                kazakhCostumeDesc: 'Традиционный наряд кочевых народов',
+                russianCostumeTitle: 'Русский костюм',
+                russianCostumeDesc: 'Народный костюм с богатой историей',
+                indianCostumeTitle: 'Индийский костюм',
+                indianCostumeDesc: 'Яркие цвета и изысканные узоры',
+                japanCostumeTitle: 'Японский костюм',
+                japanCostumeDesc: 'Элегантность и церемониальность',
+                germanCostumeTitle: 'Немецкий костюм',
+                germanCostumeDesc: 'Точность и традиционность',
+                uzbekCostumeTitle: 'Узбекский костюм',
+                uzbekCostumeDesc: 'Яркие цвета и богатые узоры',
+                
+                ancientPeriodTitle: 'Древний период',
+                ancientPeriodDesc: 'Костюмы кочевых народов',
+                medievalPeriodTitle: 'Средневековье',
+                medievalPeriodDesc: 'Период ханской эпохи',
+                sovietPeriodTitle: 'Советский период',
+                sovietPeriodDesc: 'Влияние социалистической культуры',
+                modernPeriodTitle: 'Современность',
+                modernPeriodDesc: 'Стилизация и возрождение традиций'
+            },
+            kk: {
+                pageTitle: 'Ұлттық киім - ұлттың айнасы',
+                homeTitle: 'Ұлттық киімдер: Тарих және Дәстүрлер',
+                homeDescription: 'Ұлттық киім – әр халықтың мәдениеті мен тарихының көрінісі. Ол ғасырлар бойы ұрпақтан-ұрпаққа беріліп, өзіндік ерекшеліктерімен сақталып келеді. Қазақтың ұлттық киімдері табиғи материалдардан тігілген, ою-өрнектермен безендірілген, әрі халықтың тұрмыс-тіршілігіне ыңғайлы етіп жасалған. Әр киімнің өзіндік мәні бар: шапан – құрметтің белгісі, сәукеле – қалыңдықтың көркі, камзол – әйелдер сәнінің айғағы. Ұлттық киімдер тек сәндік элемент қана емес, сонымен қатар халықтың дәстүрлері мен рухани құндылықтарын бейнелейді.',
+                galleryTitle: 'Ұлттық киімдер галереясы',
+                timelineTitle: 'Ұлттық киімдер тарихы',
+                comparisonTitle: 'Ұлттық киімдерді салыстыру',
+                
+                kazakhCostumeTitle: 'Қазақ киімі',
+                kazakhCostumeDesc: 'Көшпелі халықтардың дәстүрлі киімі',
+                russianCostumeTitle: 'Орыс киімі',
+                russianCostumeDesc: 'Бай тарихы бар халық киімі',
+                indianCostumeTitle: 'Үнді киімі',
+                indianCostumeDesc: 'Жарқын түстер мен нәзік өрнектер',
+                japanCostumeTitle: 'Жапан киімі',
+                japanCostumeDesc: 'Сұлулық пен рәсімділік',
+                germanCostumeTitle: 'Неміс киімі',
+                germanCostumeDesc: 'Дәлдік пен дәстүрлілік',
+                uzbekCostumeTitle: 'Өзбек киімі',
+                uzbekCostumeDesc: 'Жарқын түстер мен бай өрнектер',
+                
+                ancientPeriodTitle: 'Ежелгі кезең',
+                ancientPeriodDesc: 'Көшпелі халықтардың киімдері',
+                medievalPeriodTitle: 'Орта ғасырлар',
+                medievalPeriodDesc: 'Хан дәуірінің кезеңі',
+                sovietPeriodTitle: 'Кеңес кезеңі',
+                sovietPeriodDesc: 'Социалистік мәдениеттің ықпалы',
+                modernPeriodTitle: 'Қазіргі заман',
+                modernPeriodDesc: 'Стилизация және дәстүрлерді жаңғырту'
+            },
+            en: {
+                pageTitle: 'National Clothing - Nation is Mirror',
+                homeTitle: 'National Costumes: History and Traditions',
+                homeDescription: 'Traditional clothing is a reflection of the culture and history of each nation. It has been passed down through generations, preserving its uniqueness and distinctive elements. Kazakh traditional attire was made from natural materials, decorated with intricate ornaments, and adapted to the nomadic lifestyle. Each piece of clothing had its own meaning: the shapan symbolized respect, the saukele was an elegant headdress for brides, and the kamzol was a sign of feminine grace. Traditional costumes are not just fashion elements; they embody the traditions and spiritual values of the people.',
+                galleryTitle: 'National Costume Gallery',
+                timelineTitle: 'History of National Clothing',
+                comparisonTitle: 'Comparison of National Costumes',
+                
+                kazakhCostumeTitle: 'Kazakh Costume',
+                kazakhCostumeDesc: 'Traditional attire of nomadic peoples',
+                russianCostumeTitle: 'Russian Costume',
+                russianCostumeDesc: 'Folk costume with a rich history',
+                indianCostumeTitle: 'Indian Costume',
+                indianCostumeDesc: 'Bright colors and exquisite patterns',
+                japanCostumeTitle: 'Japanese Costume',
+                japanCostumeDesc: 'Elegance and ceremonial precision',
+                germanCostumeTitle: 'German Costume',
+                germanCostumeDesc: 'Precision and traditionalism',
+                uzbekCostumeTitle: 'Uzbek Costume',
+                uzbekCostumeDesc: 'Bright colors and rich patterns',
+                
+                ancientPeriodTitle: 'Ancient Period',
+                ancientPeriodDesc: 'Costumes of nomadic peoples',
+                medievalPeriodTitle: 'Middle Ages',
+                medievalPeriodDesc: 'Period of the Khan era',
+                sovietPeriodTitle: 'Soviet Period',
+                sovietPeriodDesc: 'Influence of socialist culture',
+                modernPeriodTitle: 'Modernity',
+                modernPeriodDesc: 'Stylization and revival of traditions'
+            }
+        };
+
+        const timelineData = {
+    ancient: {
+        title: translations['ru']['ancientPeriodTitle'],
+        image: 'e1.jpeg',
+        description: translations['ru']['ancientPeriodDesc']
+    },
+    medieval: {
+        title: translations['ru']['medievalPeriodTitle'],
+        image: 'e2.jpeg',
+        description: translations['ru']['medievalPeriodDesc']
+    },
+    soviet: {
+        title: translations['ru']['sovietPeriodTitle'],
+        image: 'e3.jpeg',
+        description: translations['ru']['sovietPeriodDesc']
+    },
+    modern: {
+        title: translations['ru']['modernPeriodTitle'],
+        image: 'e4.jpeg',
+        description: translations['ru']['modernPeriodDesc']
+    }
+};
+
+const comparisonData = {
+    ru: {
+        costumes: [
+            'Казахский костюм', 
+            'Русский костюм', 
+            'Индийский костюм', 
+            'Японский костюм', 
+            'Немецкий костюм'
+        ],
+        materials: {
+            'Казахский костюм': 'Шерсть, кожа',
+            'Русский костюм': 'Лён, шёлк',
+            'Индийский костюм': 'Шёлк, хлопок',
+            'Японский костюм': 'Шёлк, шерсть',
+            'Немецкий костюм': 'Шерсть, лён'
+        },
+        ornaments: {
+            'Казахский костюм': 'Геометрический',
+            'Русский костюм': 'Растительный',
+            'Индийский костюм': 'Сложный цветной',
+            'Японский костюм': 'Минималистичный',
+            'Немецкий костюм': 'Строгий линейный'
+        },
+        characteristics: {
+            'Казахский костюм': 'Кочевые традиции',
+            'Русский костюм': 'Фольклорные мотивы',
+            'Индийский костюм': 'Яркость и многослойность',
+            'Японский костюм': 'Церемониальность',
+            'Немецкий костюм': 'Точность и аккуратность'
+        }
+    },
+    kk: {
+        costumes: [
+            'Қазақ киімі', 
+            'Орыс киімі', 
+            'Үнді киімі', 
+            'Жапан киімі', 
+            'Неміс киімі'
+        ],
+        materials: {
+            'Қазақ киімі': 'Жүн, тері',
+            'Орыс киімі': 'Зығыр, жібек',
+            'Үнді киімі': 'Жібек, мақта',
+            'Жапан киімі': 'Жібек, жүн',
+            'Неміс киімі': 'Жүн, зығыр'
+        },
+        ornaments: {
+            'Қазақ киімі': 'Геометриялық',
+            'Орыс киімі': 'Өсімдік',
+            'Үнді киімі': 'Күрделі түрлі-түсті',
+            'Жапан киімі': 'Минималистік',
+            'Неміс киімі': 'Қатаң сызықтық'
+        },
+        characteristics: {
+            'Қазақ киімі': 'Көшпелі дәстүрлер',
+            'Орыс киімі': 'Фольклорлық сарындар',
+            'Үнді киімі': 'Жарқын түстер мен көп қабаттылық',
+            'Жапан киімі': 'Рәсімділік',
+            'Неміс киімі': 'Дәлдік пен мұқияттылық'
+        }
+    },
+    en: {
+        costumes: [
+            'Kazakh Costume', 
+            'Russian Costume', 
+            'Indian Costume', 
+            'Japanese Costume', 
+            'German Costume'
+        ],
+        materials: {
+            'Kazakh Costume': 'Wool, Leather',
+            'Russian Costume': 'Linen, Silk',
+            'Indian Costume': 'Silk, Cotton',
+            'Japanese Costume': 'Silk, Wool',
+            'German Costume': 'Wool, Linen'
+        },
+        ornaments: {
+            'Kazakh Costume': 'Geometric',
+            'Russian Costume': 'Floral',
+            'Indian Costume': 'Complex Colorful',
+            'Japanese Costume': 'Minimalist',
+            'German Costume': 'Strict Linear'
+        },
+        characteristics: {
+            'Kazakh Costume': 'Nomadic Traditions',
+            'Russian Costume': 'Folklore Motifs',
+            'Indian Costume': 'Brightness and Layering',
+            'Japanese Costume': 'Ceremonial Nature',
+            'German Costume': 'Precision and Accuracy'
+        }
+    }
+};
+
+function changeLanguage(lang) {
+    document.getElementById('htmlRoot').lang = lang;
+    document.title = translations[lang].pageTitle;
+
+    const translatableElements = [
+        'pageTitle', 'homeTitle', 'homeDescription', 
+        'galleryTitle', 'timelineTitle', 'comparisonTitle',
+        'kazakhCostumeTitle', 'kazakhCostumeDesc',
+        'russianCostumeTitle', 'russianCostumeDesc',
+        'indianCostumeTitle', 'indianCostumeDesc',
+        'japanCostumeTitle', 'japanCostumeDesc',
+        'germanCostumeTitle', 'germanCostumeDesc',
+        'uzbekCostumeTitle', 'uzbekCostumeDesc',
+        'ancientPeriodTitle', 'ancientPeriodDesc',
+        'medievalPeriodTitle', 'medievalPeriodDesc',
+        'sovietPeriodTitle', 'sovietPeriodDesc',
+        'modernPeriodTitle', 'modernPeriodDesc'
+    ];
+
+    translatableElements.forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+            element.textContent = translations[lang][key];
+        }
+    });
+
+    // Update timeline data
+    Object.keys(timelineData).forEach(period => {
+        timelineData[period].title = translations[lang][`${period}PeriodTitle`];
+        timelineData[period].description = translations[lang][`${period}PeriodDesc`];
+    });
+
+    // Update comparison section
+    updateComparisonSection(lang);
+}
+
+function updateComparisonSection(lang) {
+    const costume1Select = document.getElementById('costume1');
+    const costume2Select = document.getElementById('costume2');
+    const comparisonTitle = document.getElementById('comparisonTitle');
+
+    // Update comparison title
+    comparisonTitle.textContent = {
+        ru: 'Сравнение национальных костюмов',
+        kk: 'Ұлттық киімдерді салыстыру',
+        en: 'Comparison of National Costumes'
+    }[lang];
+
+    // Clear existing options
+    costume1Select.innerHTML = '';
+    costume2Select.innerHTML = '';
+
+    // Populate costume selects
+    comparisonData[lang].costumes.forEach(costume => {
+        const option1 = new Option(costume, costume);
+        const option2 = new Option(costume, costume);
+        costume1Select.add(option1);
+        costume2Select.add(option2);
+    });
+
+    // Trigger comparison update
+    updateComparison(lang);
+}
+
+function updateComparison(lang) {
+    const costume1Select = document.getElementById('costume1');
+    const costume2Select = document.getElementById('costume2');
+    const comparisonResult = document.getElementById('comparison-result');
+
+    const tableHeaders = {
+        ru: {
+            header: 'Сравнение: ',
+            materials: 'Материалы',
+            ornament: 'Орнамент',
+            characteristics: 'Характерные особенности'
+        },
+        kk: {
+            header: 'Салыстыру: ',
+            materials: 'Материалдар',
+            ornament: 'Өрнек',
+            characteristics: 'Сипаттамалар'
+        },
+        en: {
+            header: 'Comparison: ',
+            materials: 'Materials',
+            ornament: 'Ornament',
+            characteristics: 'Characteristics'
+        }
+    };
+
+    comparisonResult.innerHTML = `
+        <h3>${tableHeaders[lang].header}${costume1Select.value} и ${costume2Select.value}</h3>
+        <table>
+            <tr>
+                <th>Критерий</th>
+                <th>${costume1Select.value}</th>
+                <th>${costume2Select.value}</th>
+            </tr>
+            <tr>
+                <td>${tableHeaders[lang].materials}</td>
+                <td>${comparisonData[lang].materials[costume1Select.value] || 'Не указано'}</td>
+                <td>${comparisonData[lang].materials[costume2Select.value] || 'Не указано'}</td>
+            </tr>
+            <tr>
+                <td>${tableHeaders[lang].ornament}</td>
+                <td>${comparisonData[lang].ornaments[costume1Select.value] || 'Не указано'}</td>
+                <td>${comparisonData[lang].ornaments[costume2Select.value] || 'Не указано'}</td>
+            </tr>
+            <tr>
+                <td>${tableHeaders[lang].characteristics}</td>
+                <td>${comparisonData[lang].characteristics[costume1Select.value] || 'Не указано'}</td>
+                <td>${comparisonData[lang].characteristics[costume2Select.value] || 'Не указано'}</td>
+            </tr>
+        </table>
+    `;
+}
+
+function goBack() {
+    window.history.back();
+}
+
+// Обновите функции openModal и closeModal
+function openModal(period) {
+    const data = timelineData[period];
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalImage').src = data.image;
+    document.getElementById('modalDescription').textContent = data.description;
+    document.getElementById('timelineModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('timelineModal').style.display = 'none';
+}
+
+// Добавьте этот код в существующий скрипт
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('timelineModal');
+    
+    // Закрытие модального окна при клике вне его содержимого
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Предотвращаем закрытие при клике внутри модального окна
+    const modalContent = document.querySelector('.modal-content');
+    modalContent.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const costume1Select = document.getElementById('costume1');
+    const costume2Select = document.getElementById('costume2');
+
+    // Initial setup with Russian language
+    updateComparisonSection('kk');
+
+    // Add event listeners for costume selection changes
+    costume1Select.addEventListener('change', () => updateComparison(document.documentElement.lang));
+    costume2Select.addEventListener('change', () => updateComparison(document.documentElement.lang));
+});
+</script>
+</body>
+</html>

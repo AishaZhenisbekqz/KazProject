@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Играй и Думай</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #6a11cb;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+            display: block; /* Changed from 'none' to 'block' to make it always visible */
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            width: 520px; /* Увеличенная ширина */
+            height: 470px; /* Увеличенная высота */
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-img-container {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-type {
+            display: inline-block;
+            background: rgba(106, 17, 203, 0.1);
+            color: #6a11cb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .game-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .play-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .game-view {
+            display: none;
+            width: 100%;
+            height: 80vh;
+            margin-top: 20px;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            .card-img-container {
+                height: 160px;
+            }
+            .language-selector {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            header {
+                padding-bottom: 1rem;
+            }
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin: 1rem auto 0;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="backButton" class="back-btn" data-locale-key="back">Назад</button>
+        <h1 id="mainTitle">Играй и Думай</h1>
+        <p id="subtitle" class="subtitle">Коллекция увлекательных игр для развития мышления и проведения досуга</p>
+        <div class="language-selector">
+            <button class="lang-btn" data-lang="kk">KZ</button>
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="gamesGrid" class="games-grid">
+            <!-- Карточки игр будут генерироваться динамически через JavaScript -->
+        </div>
+        
+        <div id="gameView" class="game-view">
+            <iframe id="gameIframe" class="game-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 <span data-locale-key="footerTitle">Играй и Думай</span></p>
+            <p data-locale-key="footerText">Развивайте логику, улучшайте мышление и получайте удовольствие!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Локализация
+        const locales = {
+            ru: {
+                mainTitle: "Играй и Думай",
+                subtitle: "Коллекция увлекательных игр для развития мышления и проведения досуга",
+                back: "Назад",
+                footerTitle: "Играй и Думай",
+                about: "О нас",
+                contacts: "Контакты",
+                rules: "Правила",
+                privacy: "Политика конфиденциальности",
+                footerText: "Развивайте логику, улучшайте мышление и получайте удовольствие!",
+                typeQuiz: "Викторина",
+                typeGame: "Игра",
+                playButton: "Играть"
+            },
+            kk: {
+                mainTitle: "Ойна және Ойла",
+                subtitle: "Ойлауды дамытуға және бос уақытты өткізуге арналған қызықты ойындар жинағы",
+                back: "Артқа",
+                footerTitle: "Ойна және Ойла",
+                about: "Біз туралы",
+                contacts: "Байланыс",
+                rules: "Ережелер",
+                privacy: "Құпиялылық саясаты",
+                footerText: "Логиканы дамытыңыз, ойлауды жақсартыңыз және рахаттаныңыз!",
+                typeQuiz: "Викторина",
+                typeGame: "Ойын",
+                playButton: "Ойнау"
+            },
+            en: {
+                mainTitle: "Play and Think",
+                subtitle: "A collection of engaging games for developing thinking and leisure time",
+                back: "Back",
+                footerTitle: "Play and Think",
+                about: "About Us",
+                contacts: "Contacts",
+                rules: "Rules",
+                privacy: "Privacy Policy",
+                footerText: "Develop logic, improve thinking, and have fun!",
+                typeQuiz: "Quiz",
+                typeGame: "Game",
+                playButton: "Play"
+            }
+        };
+
+        // Данные о играх
+        const games = [
+            {
+                id: 1,
+                title: {
+                    ru: "Google Forms Викторина",
+                    kk: "Google Forms Викторинасы",
+                    en: "Google Forms Quiz"
+                },
+                type: "quiz",
+                description: {
+                    ru: "Интерактивная викторина, созданная с помощью Google Forms. Проверьте свои знания!",
+                    kk: "Google Forms көмегімен жасалған интерактивті викторина. Білімінізді тексеріңіз!",
+                    en: "Interactive quiz created with Google Forms. Test your knowledge!"
+                },
+                image: "languages.png",
+                url: "https://forms.gle/JWoKLpGNjCEnukJF6"
+            },
+            {
+                id: 2,
+                title: {
+                    ru: "Kahoot Челлендж",
+                    kk: "Kahoot Челленджі",
+                    en: "Kahoot Challenge"
+                },
+                type: "quiz",
+                description: {
+                    ru: "Увлекательный Kahoot-челлендж с вопросами на разные темы. Соревнуйтесь с другими игроками!",
+                    kk: "Әртүрлі тақырыптарға арналған сұрақтары бар қызықты Kahoot-челлендж. Басқа ойыншылармен жарысыңыз!",
+                    en: "Exciting Kahoot challenge with questions on various topics. Compete with other players!"
+                },
+                image: "da.jpeg",
+                url: "https://kahoot.it/challenge/0604378?challenge-id=088ee376-cc5f-4a8f-b694-0d43eaec6026_1743241719438"
+            }
+        ];
+
+        // Текущий язык
+        let currentLang = 'ru';
+        
+        // Текущая страница (main или game)
+        let currentPage = 'main';
+
+        // Функция для применения локализации
+        function applyLocalization() {
+            document.getElementById('mainTitle').textContent = locales[currentLang].mainTitle;
+            document.getElementById('subtitle').textContent = locales[currentLang].subtitle;
+            document.getElementById('backButton').textContent = locales[currentLang].back;
+            
+            // Локализация элементов с атрибутом data-locale-key
+            document.querySelectorAll('[data-locale-key]').forEach(element => {
+                const key = element.getAttribute('data-locale-key');
+                if (locales[currentLang][key]) {
+                    element.textContent = locales[currentLang][key];
+                }
+            });
+            
+            // Перерисовка карточек игр с текущим языком
+            renderGames();
+        }
+
+        // Функция для генерации карточек игр
+        function renderGames() {
+            const gamesContainer = document.getElementById('gamesGrid');
+            gamesContainer.innerHTML = '';
+
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.classList.add('game-card');
+                gameCard.dataset.id = game.id;
+
+                const typeText = game.type === 'quiz' ? 
+                    locales[currentLang].typeQuiz : locales[currentLang].typeGame;
+
+                gameCard.innerHTML = `
+                    <div class="card-img-container">
+                        <img src="${game.image}" alt="${game.title[currentLang]}" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="game-type">${typeText}</span>
+                        <h3 class="game-title">${game.title[currentLang]}</h3>
+                        <p class="game-description">${game.description[currentLang]}</p>
+                        <a href="#" class="play-btn" data-id="${game.id}">${locales[currentLang].playButton}</a>
+                    </div>
+                `;
+
+                gamesContainer.appendChild(gameCard);
+            });
+
+            // Добавляем обработчики событий для кнопок "Играть"
+            document.querySelectorAll('.play-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const gameId = parseInt(button.getAttribute('data-id'));
+                    openGame(gameId);
+                });
+            });
+
+            // Добавляем обработчики событий для карточек
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('play-btn')) {
+                        const gameId = parseInt(card.getAttribute('data-id'));
+                        openGame(gameId);
+                    }
+                });
+            });
+        }
+
+        // Функция для открытия игры
+        function openGame(gameId) {
+            const game = games.find(g => g.id === gameId);
+            if (game) {
+                // Устанавливаем URL игры в iframe
+                document.getElementById('gameIframe').src = game.url;
+                
+                // Переключаем отображение
+                document.getElementById('gamesGrid').style.display = 'none';
+                document.getElementById('gameView').style.display = 'block';
+                
+                // Обновляем текущую страницу
+                currentPage = 'game';
+            }
+        }
+
+        // Функция для возврата к списку игр
+        function backToGames() {
+            // Очищаем iframe
+            document.getElementById('gameIframe').src = '';
+            
+            // Переключаем отображение
+            document.getElementById('gamesGrid').style.display = 'grid';
+            document.getElementById('gameView').style.display = 'none';
+            
+            // Обновляем текущую страницу
+            currentPage = 'main';
+        }
+
+        // Функция для перехода на предыдущую страницу или возврата на главную
+        function goBack() {
+            if (currentPage === 'game') {
+                backToGames();
+            } else {
+                // Если мы уже на главной странице, можно добавить действие,
+                // например, переход на предыдущую страницу в истории браузера
+                window.history.back();
+            }
+        }
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            // Отображаем все игры при загрузке
+            renderGames();
+
+            // Обработчик для кнопок переключения языка
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Убираем класс active со всех кнопок
+                    document.querySelectorAll('.lang-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    // Добавляем класс active к нажатой кнопке
+                    button.classList.add('active');
+                    
+                    // Обновляем текущий язык
+                    currentLang = button.getAttribute('data-lang');
+                    
+                    // Применяем локализацию
+                    applyLocalization();
+                });
+            });
+
+            // Обработчик для кнопки "Назад"
+            document.getElementById('backButton').addEventListener('click', goBack);
+        });
+    </script>
+</body>
+</html>

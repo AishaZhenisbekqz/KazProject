@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отан отбасынан басталады</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .section-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .section-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section {
+            padding: 15px;
+        }
+    }
+    #video-quote {
+    display: flex;
+    flex-wrap: wrap; /* Ұзын мәтін тасымалданады */
+    max-width: 90%; /* Контейнердің енін шектейді */
+    text-align: center; /* Мәтінді орталыққа қою */
+    justify-content: center; /* Орталыққа туралау */
+}
+</style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    
+    <!-- Навигация -->
+    <nav class="bg-gradient-to-r from-blue-600 to-yellow-400 text-white p-4 shadow-lg flex justify-between items-center">
+        <h1 id="page-title" class="text-2xl font-bold">Отан отбасынан басталады</h1>
+        <div>
+            <button class="px-3 py-1 bg-white/20 rounded hover:bg-white/30" data-lang="kk">Қаз</button>
+            <button class="px-3 py-1 bg-white/20 rounded hover:bg-white/30" data-lang="ru">Рус</button>
+            <button class="px-3 py-1 bg-white/20 rounded hover:bg-white/30" data-lang="en">Eng</button>
+        </div>
+        <button onclick="window.history.back()" class="bg-white text-blue-600 px-4 py-2 rounded">← Назад</button>
+    </nav>
+    
+<!-- Hero Section -->
+<section class="relative flex items-center justify-center text-white text-center bg-cover bg-center" 
+    style="background-image: url('otbasy.jpeg'); background-size: cover; background-position: center; height: 100vh;">
+    <div class="bg-black/50 w-full h-full flex flex-col justify-center items-center p-6">
+        <h2 id="hero-title" class="text-4xl font-bold">Отбасы – ұлттың негізі</h2>
+        <p id="hero-description" class="max-w-2xl text-lg mt-4">
+            Отбасы – қоғамның негізі, ұлтты және оның мәдениетін қалыптастыратын негізгі элемент. 
+            Отбасы ұлттық қүндылықтарды, дәстүрлерді және салт-жоралғыларды беріп, бірлік пен туған жерге деген сүйіспеншіліктің негізін қалайды.
+        </p>
+    </div>
+</section>
+
+<!-- Quotes Section -->
+<section class="container mx-auto my-16 px-6">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <h3 id="quotes-title" class="text-3xl font-bold text-center mb-10">Отбасы туралы даналық</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-1" class="italic text-lg font-semibold">"Отбасы – шағын Отан."</blockquote>
+            </div>
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-2" class="italic text-lg font-semibold">"Отбасы – қоғамның негізі."</blockquote>
+            </div>
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-3" class="italic text-lg font-semibold">"Тек сүйіспеншілік пен құрмет арқылы күшті ұлт қалыптасады."</blockquote>
+            </div>
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-4" class="italic text-lg font-semibold">"Ата-ананың тәрбиесі – болашақтың негізі."</blockquote>
+            </div>
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-5" class="italic text-lg font-semibold">"Бақытты отбасы – берік қоғамның кепілі."</blockquote>
+            </div>
+            <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-6 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <blockquote id="quote-6" class="italic text-lg font-semibold">"Ұрпаққа мұра – тек мүлік емес, тәрбие."</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Video Section -->
+<section class="container mx-auto my-16 px-6">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <h3 id="video-section-title" class="text-3xl font-bold text-center mb-10">Отбасы мен Отан туралы бейне</h3>
+        <div class="flex justify-center">
+            <iframe 
+                width="960" 
+                height="540" 
+                src="https://www.youtube.com/embed/KxXZNOcFSOA?si=P_ARZfAGIYgcRGeL" 
+                title="Семья и Родина" 
+                frameborder="0" 
+                allowfullscreen 
+                class="rounded-lg shadow-lg">
+            </iframe>
+        </div>
+        <!-- Ерекше мәтін, анимация және иконка -->
+        <p id="video-quote" class="text-center text-lg font-semibold mt-6 text-gray-700 italic flex justify-center items-center animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" clip-rule="evenodd"/>
+            </svg>
+            <span id="video-quote-text">"Отбасы – жүрек жылуы, Отан – жан жылуы."</span>
+        </p>        
+    </div>
+</section>
+
+
+    
+    <script>
+        const translations = {
+    kk: {
+        pageTitle: 'Отан отбасынан басталады',
+        heroTitle: 'Отбасы – ұлттың негізі',
+        heroDescription: 'Отбасы – қоғамның негізі, ұлтты және оның мәдениетін қалыптастыратын негізгі элемент. Отбасы ұлттық қүндылықтарды, дәстүрлерді және салт-жоралғыларды беріп, бірлік пен туған жерге деген сүйіспеншіліктің негізін қалайды.',
+        quotesTitle: 'Отбасы туралы даналық',
+        quote1: '"Отбасы – шағын Отан."',
+        quote2: '"Отбасы – қоғамның негізі."',
+        quote3: '"Тек сүйіспеншілік пен құрмет арқылы күшті ұлт қалыптасады."',
+        quote4: '"Ата-ананың тәрбиесі – болашақтың негізі."',
+        quote5: '"Бақытты отбасы – берік қоғамның кепілі."',
+        quote6: '"Ұрпаққа мұра – тек мүлік емес, тәрбие."',
+        videoSectionTitle: 'Отбасы мен Отан туралы бейне',
+        videoQuote: '"Отбасы – жүрек жылуы, Отан – жан жылуы."'
+    },
+    ru: {
+        pageTitle: 'Отечество начинается с семьи',
+        heroTitle: 'Семья – основа нации',
+        heroDescription: 'Семья — это основа общества, основополагающий элемент, который формирует нацию и ее культуру. Семья передает национальные ценности, традиции и обычаи, создавая базу для формирования единства и любви к родной земле.',
+        quotesTitle: 'Мудрость о семье',
+        quote1: '"Семья — это маленькая родина."',
+        quote2: '"Семья — основа общества."',
+        quote3: '"Только через любовь и уважение строится крепкая нация."',
+        quote4: '"Воспитание родителей – основа будущего."',
+        quote5: '"Счастливая семья – залог крепкого общества."',
+        quote6: '"Наследие потомкам – это не только имущество, но и воспитание."',
+        videoSectionTitle: 'Видео о семье и Родине',
+        videoQuote: '"Семья – тепло сердца, Родина – тепло души."'
+    },
+    en: {
+        pageTitle: 'Homeland Begins with Family',
+        heroTitle: 'Family is the Foundation of the Nation',
+        heroDescription: 'Family is the foundation of society, a fundamental element that forms a nation and its culture. Family transmits national values, traditions, and customs, creating a base for unity and love for the native land.',
+        quotesTitle: 'Wisdom about Family',
+        quote1: '"Family is a small homeland."',
+        quote2: '"Family is the foundation of society."',
+        quote3: '"A strong nation is built through love and respect."',
+        quote4: '"Parental upbringing is the foundation of the future."',
+        quote5: '"A happy family is the key to a strong society."',
+        quote6: '"A legacy for future generations is not just property, but upbringing."',
+        videoSectionTitle: 'Video about Family and Homeland',
+        videoQuote: '"Family is the warmth of the heart, Homeland is the warmth of the soul."'
+    }
+};
+        
+function updateLanguage(lang) {
+    document.getElementById('page-title').textContent = translations[lang].pageTitle;
+    document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+    document.getElementById('hero-description').textContent = translations[lang].heroDescription;
+    document.getElementById('quotes-title').textContent = translations[lang].quotesTitle;
+    document.getElementById('quote-1').textContent = translations[lang].quote1;
+    document.getElementById('quote-2').textContent = translations[lang].quote2;
+    document.getElementById('quote-3').textContent = translations[lang].quote3;
+    document.getElementById('quote-4').textContent = translations[lang].quote4;
+    document.getElementById('quote-5').textContent = translations[lang].quote5;
+    document.getElementById('quote-6').textContent = translations[lang].quote6;
+    document.getElementById('video-section-title').textContent = translations[lang].videoSectionTitle;
+    document.getElementById('video-quote').textContent = translations[lang].videoQuote;
+}
+        
+        document.querySelectorAll('button[data-lang]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateLanguage(lang);
+                localStorage.setItem('selectedLanguage', lang);
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'kk';
+            updateLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

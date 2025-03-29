@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Образовательная платформа</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .navigator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #2c3e50;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .language-selector button {
+            margin-right: 10px;
+            padding: 8px 15px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        .language-selector button:hover, 
+        .language-selector button.active {
+            background-color: white;
+            color: #2c3e50;
+        }
+        .section {
+            margin: 30px 5%;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .slideshow-section {
+            margin: 30px 5%;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-authors {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .author-card {
+            flex: 1;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        .author-card:hover {
+            transform: scale(1.05);
+        }
+        .author-card img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.8em;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .project-description {
+            flex: 1.5;
+        }
+        .project-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .project-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .project-image:hover img {
+            transform: scale(1.1);
+        }
+        .project-text {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .charts-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+        }
+        .chart-container {
+            flex: 1;
+            text-align: center;
+        }
+        #backButton {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #backButton:hover {
+            background-color: white;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigator">
+        <div class="language-selector">
+            <button onclick="changeLanguage('ru')">Русский</button>
+            <button onclick="changeLanguage('en')">English</button>
+            <button onclick="changeLanguage('kz')">Қазақша</button>
+        </div>
+        <button id="backButton">Назад</button>
+    </div>
+
+    <div id="content">
+        <div class="section about-authors">
+            <div class="author-card student">
+                <img src="b.jpeg" alt="Студент">
+                <h3 class="student-title">Автор проекта</h3>
+                <h4 class="student-name">Тумабай Балжан Осербайқызы</h4>
+                <p class="student-position">10 класс</p>
+            </div>
+            <div class="author-card mentor">
+                <img src="image.png" alt="Руководитель">
+                <h3 class="mentor-title">Научный руководитель</h3>
+                <h4 class="mentor-name">Сайлау Фариза Жеңісбекқызы</h4>
+                <p class="mentor-position">Должность: Биолог</p>
+                <p class="mentor-experience">Опыт работы: 5 лет</p>
+            </div>
+        </div>
+
+        <div class="section project-section">
+            <div class="project-description">
+                <h2 class="project-title section-title">О проекте</h2>
+                <p class="project-text">
+                    Наше учебное заведение – это образовательная платформа, объединяющая представителей различных этносов, формирующая многонациональную среду, основанную на взаимном уважении, дружбе и толерантности. Мы рассматриваем развитие межнационального согласия и сохранение культурного наследия как одну из ключевых задач. Поэтому мы не просто предоставляем качественное образование, но и создаем условия для духовного и культурного роста учащихся. 
+
+                    Наш проект направлен на инновационное развитие образовательных технологий, создание современной интерактивной среды обучения и всестороннюю поддержку талантливой молодежи. Эта платформа способствует формированию гражданской ответственности, национального самосознания и уважения к культуре всех этносов Казахстана. 
+
+                    Ключевой особенностью нашего веб-сайта является популяризация культурного многообразия казахстанского общества, развитие государственного языка и поддержка многогранной языковой политики. Кроме того, особое внимание уделяется укреплению института семьи, повышению ее воспитательной роли и формированию толерантного мировоззрения среди молодежи. 
+
+                    Наша цель – дать каждому ученику возможность почувствовать себя полноценным гражданином своей страны, впитать в себя национальные и гражданские ценности и внести свой вклад в их сохранение и передачу будущим поколениям.
+                </p>
+            </div>
+            <div class="project-image">
+                <img src="mektep.jpeg" alt="Проект">
+            </div>
+        </div>
+
+        <div class="section chart-section">
+            <h2 class="section-title">Диаграммы национального состава</h2>
+            <div class="charts-section">
+                <div class="chart-container">
+                    <canvas id="studentsChart"></canvas>
+                    <p class="chart-students section-title">Ученики</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="teachersChart"></canvas>
+                    <p class="chart-teachers section-title">Преподаватели</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slideshow-section">
+            <h2 class="section-title">Photo Show</h2>
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="w1.jpeg" alt="Слайд 1">
+                </div>
+                <div class="slide">
+                    <img src="w2.jpeg" alt="Слайд 2">
+                </div>
+                <div class="slide">
+                    <img src="w3.jpeg" alt="Слайд 3">
+                </div>
+                <div class="slide">
+                    <img src="w4.jpeg" alt="Слайд 4">
+                </div>
+                <div class="slide">
+                    <img src="w5.jpeg" alt="Слайд 5">
+                </div>
+                <div class="slide">
+                    <img src="mektep.jpeg" alt="Слайд 5">
+                </div>
+                <div class="slide">
+                    <img src="w6.jpeg" alt="Слайд 5">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const translations = {
+            ru: {
+                'student-title': 'Автор проекта',
+                'student-name': 'Тумабай Балжан Осербайқызы',
+                'student-position': '10 класс',
+                'student-experience': 'Опыт работы: 5 лет',
+                'mentor-title': 'Руководитель',
+                'mentor-name': 'Сайлау Фариза Жеңісбекқызы',
+                'mentor-position': 'Должность: Научный руководитель',
+                'mentor-experience': 'Опыт работы: 5 лет',
+                'project-title': 'О проекте',
+                'project-text': 'Наше учебное заведение – это образовательная платформа, объединяющая представителей различных этносов, формирующая многонациональную среду, основанную на взаимном уважении, дружбе и толерантности. Мы рассматриваем развитие межнационального согласия и сохранение культурного наследия как одну из ключевых задач. Поэтому мы не просто предоставляем качественное образование, но и создаем условия для духовного и культурного роста учащихся. \n\nНаш проект направлен на инновационное развитие образовательных технологий, создание современной интерактивной среды обучения и всестороннюю поддержку талантливой молодежи. Эта платформа способствует формированию гражданской ответственности, национального самосознания и уважения к культуре всех этносов Казахстана. \n\nКлючевой особенностью нашего веб-сайта является популяризация культурного многообразия казахстанского общества, развитие государственного языка и поддержка многогранной языковой политики. Кроме того, особое внимание уделяется укреплению института семьи, повышению ее воспитательной роли и формированию толерантного мировоззрения среди молодежи. \n\nНаша цель – дать каждому ученику возможность почувствовать себя полноценным гражданином своей страны, впитать в себя национальные и гражданские ценности и внести свой вклад в их сохранение и передачу будущим поколениям.',
+                'chart-students': 'Ученики',
+                'chart-teachers': 'Преподаватели',
+                'back-button': 'Назад',
+                'chart-labels-students': ['Узбеки', 'Казахи', 'Таджики', 'Татары'],
+                'chart-labels-teachers': ['Узбеки', 'Казахи', 'Таджики']
+            },
+            en: {
+                'student-title': 'Project author',
+                'student-name': 'Tumabai Balzhan',
+                'student-position': '10 grade',
+                'student-experience': 'Work experience: 5 years',
+                'mentor-title': 'Mentor',
+                'mentor-name': 'Sailau Fariza',
+                'mentor-position': 'Position: Scientific Supervisor',
+                'mentor-experience': 'Work experience: 5 years',
+                'project-title': 'About Project',
+                'project-text': 'Our educational institution is a platform that brings together representatives of various ethnic groups, fostering a multinational environment based on mutual respect, friendship, and tolerance. We consider the development of interethnic harmony and the preservation of cultural heritage as one of our key priorities. Therefore, we do not only provide quality education but also create conditions for the spiritual and cultural growth of our students. \n\nOur project aims at the innovative development of educational technologies, the creation of a modern interactive learning environment, and comprehensive support for talented youth. This platform helps instill civic responsibility, national identity, and respect for the diverse cultures of Kazakhstan. \n\nThe main feature of our website is the promotion of Kazakhstan is cultural diversity, the development of the state language, and support for multilingualism. Additionally, special attention is given to strengthening the family institution, enhancing its educational role, and fostering a tolerant worldview among young people. \n\nOur goal is to empower every student to feel like a full-fledged citizen of their country, internalize national and civic values, and contribute to their preservation and transmission to future generations.',
+                'chart-students': 'Students',
+                'chart-teachers': 'Teachers',
+                'back-button': 'Back',
+                'chart-labels-students': ['Uzbeks', 'Kazakhs', 'Tajiks', 'Tatars'],
+                'chart-labels-teachers': ['Uzbeks', 'Kazakhs', 'Tajiks']
+            },
+            kz: {
+                'student-title': 'Жоба авторы',
+                'student-name': 'Тумабай Балжан Осербайқызы',
+                'student-position': '10 сынып',
+                'student-experience': 'Жұмыс тәжірибесі: 5 жыл',
+                'mentor-title': 'Жетекші',
+                'mentor-name': 'Сайлау Фариза Жеңісбекқызы',
+                'mentor-position': 'Лауазым: Ғылыми жетекші',
+                'mentor-experience': 'Жұмыс тәжірибесі: 5 жыл',
+                'project-title': 'Жоба туралы',
+                'project-text': 'Біздің мектебіміз – әртүрлі этностардың өкілдері білім алатын, көпұлтты орта қалыптастырған білім беру мекемесі. Біз ұлттар арасындағы достықты, толеранттылықты және өзара құрметті дамытуды басты міндеттеріміздің бірі ретінде қарастырамыз. Осы мақсатта, біз тек сапалы білім берумен шектелмей, сонымен қатар оқушылардың рухани және мәдени дамуына жағдай жасауды көздейміз. \n\nЖобамыз білім беру технологияларын инновациялық түрде дамытуға, заманауи интерактивті оқыту ортасын қалыптастыруға және талантты жастарды жан-жақты қолдауға бағытталған. Бұл платформа оқушылардың азаматтық жауапкершілігін арттырып, олардың ұлттық бірегейлікті түсінуіне ықпал етеді. \n\nВеб-сайттың басты ерекшелігі – Қазақстан халқының мәдени сан алуандығын насихаттау, мемлекеттік тілді дамыту және көптілділік саясатын қолдау. Сонымен қатар, отбасы институтын нығайту, оның тәрбиелік мәнін арттыру және жастар арасында толерантты көзқарасты қалыптастыру үшін түрлі шығармашылық жобалар ұсынылады. \n\nБіздің мақсатымыз –әрбір оқушы өз елінің толыққанды азаматы ретінде сезініп, ұлттық және азаматтық құндылықтарды бойына сіңіріп, оларды келешек ұрпаққа жеткізуге атсалысуына мүмкіндік жасау.',
+                'chart-students': 'Оқушылар',
+                'chart-teachers': 'Оқытушылар',
+                'back-button': 'Артқа',
+                'chart-labels-students': ['Өзбектер', 'Қазақтар', 'Тәжіктер', 'Татарлар'],
+                'chart-labels-teachers': ['Өзбектер', 'Қазақтар', 'Тәжіктер']
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Обновление языковых кнопок
+            document.querySelectorAll('.language-selector button').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+            });
+
+            // Обновление переводимых элементов
+            const updateElementText = (selector, key) => {
+                const element = document.querySelector(selector);
+                if (element) element.textContent = translations[lang][key];
+            };
+
+            // Обновление статических элементов с переводом
+            const elementsToTranslate = [
+                {selector: '.student-title', key: 'student-title'},
+                {selector: '.student-name', key: 'student-name'},
+                {selector: '.student-position', key: 'student-position'},
+                {selector: '.student-experience', key: 'student-experience'},
+                {selector: '.mentor-title', key: 'mentor-title'},
+                {selector: '.mentor-name', key: 'mentor-name'},
+                {selector: '.mentor-position', key: 'mentor-position'},
+                {selector: '.mentor-experience', key: 'mentor-experience'},
+                {selector: '.project-title', key: 'project-title'},
+                {selector: '.project-text', key: 'project-text'},
+                {selector: '.chart-students', key: 'chart-students'},
+                {selector: '.chart-teachers', key: 'chart-teachers'},
+                {selector: '#backButton', key: 'back-button'}
+            ];
+
+            elementsToTranslate.forEach(item => updateElementText(item.selector, item.key));
+
+            // Обновление диаграмм
+            updateCharts(lang);
+        }
+
+        function updateCharts(lang) {
+            const studentsChart = Chart.getChart('studentsChart');
+            const teachersChart = Chart.getChart('teachersChart');
+
+            if (studentsChart) {
+                studentsChart.data.labels = translations[lang]['chart-labels-students'];
+                studentsChart.update();
+            }
+
+            if (teachersChart) {
+                teachersChart.data.labels = translations[lang]['chart-labels-teachers'];
+                teachersChart.update();
+            }
+        }
+
+        // Слайдер с автоматической сменой слайдов
+        function changeSlide() {
+            const slides = document.querySelectorAll('.slide');
+            const activeSlide = document.querySelector('.slide.active');
+            const currentIndex = Array.from(slides).indexOf(activeSlide);
+            
+            activeSlide.classList.remove('active');
+            const nextIndex = (currentIndex + 1) % slides.length;
+            slides[nextIndex].classList.add('active');
+        }
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            window.history.back();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Автоматическая смена слайдов каждые 4 секунды
+            setInterval(changeSlide, 4000);
+
+            // Диаграммы национальностей
+            const chartOptions = {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            };
+
+            new Chart(document.getElementById('studentsChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Узбеки', 'Казахи', 'Таджики', 'Татары'],
+                    datasets: [{
+                        data: [176, 169, 46, 6],
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                    }]
+                },
+                options: chartOptions
+            });
+
+            new Chart(document.getElementById('teachersChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Узбеки', 'Казахи', 'Таджики'],
+                    datasets: [{
+                        data: [13, 65, 2],
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                    }]
+                },
+                options: chartOptions
+            });
+        });
+    </script>
+</body>
+</html>

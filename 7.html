@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ас – адамның арқауы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #f39c12;
+            --text-color: #333;
+            --background-color: #f4f6f7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('food.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .dish-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .quiz-option {
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .quiz-option:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(10px);
+        }
+
+        .play-icon {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-blue-600 to-yellow-400 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 id="page-title" class="text-2xl font-bold">Ас – адамның арқауы</h1>
+            <div class="language-buttons space-x-2">
+                <button data-lang="kk" class="language-btn px-3 py-1 rounded hover:bg-white/20">Қаз</button>
+                <button data-lang="ru" class="language-btn px-3 py-1 rounded hover:bg-white/20">Рус</button>
+                <button data-lang="en" class="language-btn px-3 py-1 rounded hover:bg-white/20">Eng</button>
+            </div>
+            <button onclick="window.history.back()" class="bg-white text-blue-600 px-4 py-2 rounded">
+                ← Назад
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white text-center py-20">
+        <div class="container mx-auto">
+            <h2 id="hero-title" class="text-4xl font-bold mb-4">Дәмді тамақ – достықтың тілі</h2>
+            <p id="hero-description" class="text-xl max-w-2xl mx-auto">
+                Әр ұлттың асханасы – оның мәдениетінің бір бөлігі. Біз бірге тамақ ішіп, бір-бірімізді түсінеміз.
+            </p>
+        </div>
+    </section>
+
+ <!-- National Dishes Gallery -->
+<section class="container mx-auto my-12 bg-white p-8 rounded-lg shadow-lg">
+    <h3 id="dishes-title" class="text-3xl font-bold text-center mb-8">Ұлттық тағамдар галереясы</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="besh.jpeg" alt="Бешбармақ" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-1-name" class="text-xl font-semibold">Бешбармақ (Қазақстан)</h4>
+                <p id="dish-1-description" class="text-gray-600">
+                    Қазақ халқының дәстүрлі ұлттық тағамы, қамыр мен еттен дайындалады.
+                </p>
+            </div>
+        </div>
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="plov.jpeg" alt="Плов" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-2-name" class="text-xl font-semibold">Плов (Өзбекстан)</h4>
+                <p id="dish-2-description" class="text-gray-600">
+                    Өзбек халқының дәстүрлі тағамы, күріш, ет және сәбізден дайындалады.
+                </p>
+            </div>
+        </div>
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="sushi.webp" alt="Суши" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-3-name" class="text-xl font-semibold">Суши (Жапония)</h4>
+                <p id="dish-3-description" class="text-gray-600">
+                    Жапон асханасының танымал тағамы, күріш пен теңіз өнімдерінен жасалады.
+                </p>
+            </div>
+        </div>
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="pasta.jpeg" alt="Паста Карбонара" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-4-name" class="text-xl font-semibold">Паста Карбонара (Италия)</h4>
+                <p id="dish-4-description" class="text-gray-600">
+                    Италияның атақты тағамы, макарон мен жұмыртқа-сыр тұздығымен дайындалады.
+                </p>
+            </div>
+        </div>
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="tako.jpeg" alt="Тако" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-5-name" class="text-xl font-semibold">Тако (Мексика)</h4>
+                <p id="dish-5-description" class="text-gray-600">
+                    Жүгері немесе бидай нанында ет, көкөніс және соустармен берілетін мексикалық тағам.
+                </p>
+            </div>
+        </div>
+        <div class="dish-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="kruasan.jpeg" alt="Круассан" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 id="dish-6-name" class="text-xl font-semibold">Круассан (Франция)</h4>
+                <p id="dish-6-description" class="text-gray-600">
+                    Француздардың атақты таңғы асы, қабатталған қамырдан жасалады.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Video Blog -->
+<section class="container mx-auto my-12 bg-white p-8 rounded-lg shadow-lg">
+    <h3 id="video-section-title" class="text-3xl font-bold text-center mb-8">Тамақ дайындау бейнелері</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="relative group">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/zr-pGJFXgIo?si=q2wYtZyB1ryFgAI7" 
+                title="Бешбармақ дайындау" 
+                frameborder="1" 
+                class="w-full rounded-lg shadow-lg"
+                allowfullscreen
+            ></iframe>
+        </div>
+        <div class="relative group">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/bc-_HiCGwrk?si=1pAG554qHQfptjfd" 
+                title="Самса дайындау" 
+                frameborder="0" 
+                class="w-full rounded-lg shadow-lg"
+                allowfullscreen
+            ></iframe>
+        </div>
+        <div class="relative group">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/_-9nH4zFThs?si=vCG9Jizpgc42OGSi" 
+                title="Борщ дайындау" 
+                frameborder="1" 
+                class="w-full rounded-lg shadow-lg"
+                allowfullscreen
+            ></iframe>
+        </div>
+        <div class="relative group">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/MVaZ24jMQnc?si=AYHLUd6gfbr0SMbW" 
+                title="Пахлава дайындау" 
+                frameborder="0" 
+                class="w-full rounded-lg shadow-lg"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+    <!-- Culinary Quiz -->
+<section id="quiz-section" class="container mx-auto my-12">
+    <h3 id="quiz-title" class="text-3xl font-bold text-center mb-8">Асхана сынағы</h3>
+    <div id="quiz-container" class="bg-white p-8 rounded-lg shadow-lg">
+        <!-- Сұрақ 1 -->
+        <div class="quiz-item mb-8">
+            <div class="text-xl mb-6">Қай тамақ қазақтың ұлттық тағамы?</div>
+            <div class="space-y-4">
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Піспек
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200 correct">
+                    Бешбармақ
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Лагман
+                </button>
+            </div>
+        </div>
+        
+        <!-- Сұрақ 2 -->
+        <div class="quiz-item mb-8">
+            <div class="text-xl mb-6">Қай елде суши дәстүрлі тағам болып саналады?</div>
+            <div class="space-y-4">
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200 correct">
+                    Корея
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Қытай
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Жапония
+                </button>
+            </div>
+        </div>
+        
+        <!-- Сұрақ 3 -->
+        <div class="quiz-item">
+            <div class="text-xl mb-6">Италияның ең танымал тағамдарының бірі қандай?</div>
+            <div class="space-y-4">
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200 correct">
+                    Пицца
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Тако
+                </button>
+                <button class="quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200">
+                    Борщ
+                </button>
+            </div>
+        </div>
+        
+        <div id="quiz-result" class="mt-6 hidden text-center text-xl"></div>
+    </div>
+</section>
+
+    <script>
+        const translations = {
+    kk: {
+        pageTitle: 'Ас – адамның арқауы',
+            heroTitle: 'Дәмді тамақ – достықтың тілі',
+            heroDescription: 'Әр ұлттың асханасы – оның мәдениетінің бір бөлігі. Біз бірге тамақ ішіп, бір-бірімізді түсінеміз.',
+            dishesTitle: 'Ұлттық тағамдар галереясы',
+            dish1Name: 'Бешбармақ (Қазақстан)',
+            dish1Description: 'Қазақ халқының дәстүрлі ұлттық тағамы, қамыр мен еттен дайындалады.',
+            dish2Name: 'Плов (Өзбекстан)',
+            dish2Description: 'Өзбек халқының дәстүрлі тағамы, күріш, ет және сәбізден дайындалады.',
+            dish3Name: 'Суши (Жапония)',
+            dish3Description: 'Жапон асханасының танымал тағамы, күріш пен теңіз өнімдерінен жасалады.',
+            dish4Name: 'Паста Карбонара (Италия)',
+            dish4Description: 'Италияның атақты тағамы, макарон мен жұмыртқа-сыр тұздығымен дайындалады.',
+            dish5Name: 'Тако (Мексика)',
+            dish5Description: 'Жүгері немесе бидай нанында ет, көкөніс және соустармен берілетін мексикалық тағам.',
+            dish6Name: 'Круассан (Франция)',
+            dish6Description: 'Француздардың атақты таңғы асы, қабатталған қамырдан жасалады.',
+            videoSectionTitle: 'Тамақ дайындау бейнелері',
+        quizTitle: 'Асхана сынағы',
+        quizQuestions: [
+            {
+                question: 'Қай тамақ қазақтың ұлттық тағамы?',
+                options: ['Піспек', 'Бешбармақ', 'Лагман'],
+                correct: 'Бешбармақ'
+            },
+            {
+                question: 'Қай елде суши дәстүрлі тағам болып саналады?',
+                options: ['Корея', 'Қытай', 'Жапония'],
+                correct: 'Жапония'
+            },
+            {
+                question: 'Италияның ең танымал тағамдарының бірі қандай?',
+                options: ['Пицца', 'Тако', 'Борщ'],
+                correct: 'Тако'
+            }
+        ]
+    },
+    ru: {
+        pageTitle: 'Еда – основа жизни',
+            heroTitle: 'Вкусная еда – язык дружбы',
+            heroDescription: 'Кухня каждого народа – часть его культуры. Мы едим вместе и понимаем друг друга.',
+            dishesTitle: 'Галерея национальных блюд',
+            dish1Name: 'Бешбармак (Казахстан)',
+            dish1Description: 'Традиционное казахское национальное блюдо, готовится с мясом и тестом.',
+            dish2Name: 'Плов (Узбекистан)',
+            dish2Description: 'Традиционное узбекское блюдо, приготовленное из риса, мяса и моркови.',
+            dish3Name: 'Суши (Япония)',
+            dish3Description: 'Популярное японское блюдо, приготовленное из риса и морепродуктов.',
+            dish4Name: 'Паста Карбонара (Италия)',
+            dish4Description: 'Знаменитое итальянское блюдо из макарон с яично-сырным соусом.',
+            dish5Name: 'Тако (Мексика)',
+            dish5Description: 'Мексиканское блюдо с мясом, овощами и соусами в кукурузной или пшеничной лепешке.',
+            dish6Name: 'Круассан (Франция)',
+            dish6Description: 'Знаменитая французская выпечка из слоеного теста.',
+            videoSectionTitle: 'Видео о приготовлении блюд',
+        quizTitle: 'Кулинарный тест',
+        quizQuestions: [
+            {
+                question: 'Какое блюдо является национальным казахским?',
+                options: ['Писпек', 'Бешбармак', 'Лагман'],
+                correct: 'Бешбармак'
+            },
+            {
+                question: 'В какой стране суши является традиционным блюдом?',
+                options: ['Корея', 'Китай', 'Япония'],
+                correct: 'Япония'
+            },
+            {
+                question: 'Какое из этих блюд наиболее известно в Италии?',
+                options: ['Пицца', 'Тако', 'Борщ'],
+                correct: 'Тако'
+            }
+        ]
+    },
+    en: {
+        pageTitle: 'Food is the Basis of Life',
+            heroTitle: 'Delicious Food is the Language of Friendship',
+            heroDescription: 'The cuisine of each nation is a part of its culture. We eat together and understand each other.',
+            dishesTitle: 'National Dishes Gallery',
+            dish1Name: 'Beshbarmak (Kazakhstan)',
+            dish1Description: 'Traditional Kazakh national dish, prepared with meat and dough.',
+            dish2Name: 'Plov (Uzbekistan)',
+            dish2Description: 'A traditional Uzbek dish made from rice, meat, and carrots.',
+            dish3Name: 'Sushi (Japan)',
+            dish3Description: 'A popular Japanese dish made from rice and seafood.',
+            dish4Name: 'Pasta Carbonara (Italy)',
+            dish4Description: 'A famous Italian dish with pasta and an egg-cheese sauce.',
+            dish5Name: 'Taco (Mexico)',
+            dish5Description: 'A Mexican dish served with meat, vegetables, and sauces in a corn or wheat tortilla.',
+            dish6Name: 'Croissant (France)',
+            dish6Description: 'A famous French breakfast pastry made from layered dough.',
+            videoSectionTitle: 'Cooking Videos',
+        quizTitle: 'Culinary Quiz',
+        quizQuestions: [
+            {
+                question: 'Which dish is the national Kazakh dish?',
+                options: ['Pispek', 'Beshbarmak', 'Lagman'],
+                correct: 'Beshbarmak'
+            },
+            {
+                question: 'In which country is sushi a traditional dish?',
+                options: ['Korea', 'China', 'Japan'],
+                correct: 'Japan'
+            },
+            {
+                question: 'Which of these dishes is most famous in Italy?',
+                options: ['Pizza', 'Taco', 'Borscht'],
+                correct: 'Taco'
+            }
+        ]
+    }
+};
+
+
+function updateLanguage(lang) {
+    document.getElementById('page-title').textContent = translations[lang].pageTitle;
+    document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+    document.getElementById('hero-description').textContent = translations[lang].heroDescription;
+    document.getElementById('dishes-title').textContent = translations[lang].dishesTitle;
+
+    document.getElementById('dish-1-name').textContent = translations[lang].dish1Name;
+    document.getElementById('dish-1-description').textContent = translations[lang].dish1Description;
+    document.getElementById('dish-2-name').textContent = translations[lang].dish2Name;
+    document.getElementById('dish-2-description').textContent = translations[lang].dish2Description;
+    document.getElementById('dish-3-name').textContent = translations[lang].dish3Name;
+    document.getElementById('dish-3-description').textContent = translations[lang].dish3Description;
+    document.getElementById('dish-4-name').textContent = translations[lang].dish4Name;
+    document.getElementById('dish-4-description').textContent = translations[lang].dish4Description;
+    document.getElementById('dish-5-name').textContent = translations[lang].dish5Name;
+    document.getElementById('dish-5-description').textContent = translations[lang].dish5Description;
+    document.getElementById('dish-6-name').textContent = translations[lang].dish6Name;
+    document.getElementById('dish-6-description').textContent = translations[lang].dish6Description;
+
+    document.getElementById('video-section-title').textContent = translations[lang].videoSectionTitle;
+    document.getElementById('quiz-title').textContent = translations[lang].quizTitle;
+
+    // Викторина сұрақтарын жаңарту
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = ''; // Алдыңғы сұрақтарды тазалау
+
+    translations[lang].quizQuestions.forEach((quizItem, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'text-xl mb-4 font-bold';
+        questionElement.textContent = `${index + 1}. ${quizItem.question}`;
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'space-y-4';
+
+        // Нәтиже көрсету үшін бөлек div
+        const resultElement = document.createElement('div');
+        resultElement.className = 'quiz-result mt-2 hidden text-center text-lg font-semibold';
+
+        quizItem.options.forEach(option => {
+            const button = document.createElement('button');
+            button.className = 'quiz-option w-full bg-blue-100 p-4 rounded-lg text-left hover:bg-blue-200';
+            button.textContent = option;
+            button.addEventListener('click', () => checkAnswer(button, quizItem.correct, resultElement));
+            optionsContainer.appendChild(button);
+        });
+
+        quizContainer.appendChild(questionElement);
+        quizContainer.appendChild(optionsContainer);
+        quizContainer.appendChild(resultElement); // Әр сұрақтың астына нәтижені қосу
+    });
+
+    localStorage.setItem('selectedLanguage', lang);
+}
+
+// Дұрыс жауапты тексеру функциясы (әр сұрақтың астына шығарады)
+function checkAnswer(button, correctAnswer, resultElement) {
+    const isCorrect = button.textContent === correctAnswer;
+    resultElement.textContent = isCorrect 
+        ? `✅ Дұрыс жауап! ${correctAnswer}` 
+        : `❌ Қате жауап. Дұрыс жауап: ${correctAnswer}.`;
+    resultElement.classList.remove('hidden');
+}
+
+// Тіл ауыстыру батырмаларына тыңдаушы қосу
+document.querySelectorAll('.language-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        updateLanguage(lang);
+    });
+});
+
+// Бет жүктелген кезде тіл мен викторинаны баптау
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLanguage') || 
+                      (navigator.language || navigator.userLanguage).split('-')[0];
+
+    const validLangs = ['kk', 'ru', 'en'];
+    const lang = validLangs.includes(savedLang) ? savedLang : 'kk';
+
+    updateLanguage(lang);
+});
+
+    </script>
+</body>
+</html>

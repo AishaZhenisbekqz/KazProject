@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ассамблея народа Казахстана</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0B5394;
+            --secondary-gold: #D4AF37;
+            --text-dark: #2C3E50;
+            --background-light: #F5F5F5;
+            --white: #FFFFFF;
+            --accent-green: #2ECC71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .language-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Banner Section */
+        .banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5); /* Мәтін оқылатын болуы үшін қара фон */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -310px; /* Жоғары көтеру */
+}
+
+
+        /* Section Styles */
+        .section {
+            padding: 50px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* Ethnos Map */
+        .ethnos-map {
+            position: relative;
+            width: 100%;
+        }
+
+        .ethnos-map img {
+            width: 100%;
+            height: auto;
+        }
+
+        .region-tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .about-grid h3 {
+    padding-left: 20px; /* Сол жақ шекарадан алшақтату */
+    padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+}
+        .about-grid p {
+    padding-left: 20px; /* Сол жақ шекарадан алшақтату */
+    padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+}
+
+        /* Events and News */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .event-card {
+            background: var(--background-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: scale(1.05);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .event-card-content {
+            padding: 15px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contacts */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--secondary-gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-grid,
+            .events-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        .back-btn {
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-grid p {
+        padding-left: 20px; /* Сол жақ шекарадан алшақтату */
+        padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+    }
+    .contact-grid h3 {
+        padding-left: 20px; /* Сол жақ шекарадан алшақтату */
+        padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assam.png" alt="Assembly Logo">
+            <span data-translate="navbar.title">Ассамблея народа Казахстана</span>
+        </div>
+        <div class="nav-actions">
+            <div class="language-selector">
+                <button class="language-btn" data-lang="kk">Қаз</button>
+                <button class="language-btn active" data-lang="ru">Рус</button>
+                <button class="language-btn" data-lang="en">Eng</button>
+            </div>
+        </div>
+        <button class="back-btn" onclick="window.history.back()">
+            ← Назад
+        </button>
+    </nav>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1 data-translate="banner.title">Единство и согласие</h1>
+            <p data-translate="banner.subtitle">Равные возможности для всех этносов</p>
+        </div>
+        <img src="4.jpeg" alt="Қазақстан халықтарының бірлігі" class="banner-image">
+    </section>    
+
+    <!-- About Section -->
+    <section class="section container">
+        <h2 class="section-title" data-translate="sections.about">Об Ассамблее народа Казахстана</h2>
+        <div class="about-grid">
+            <div>
+                <h3 data-translate="about.historyTitle">История</h3>
+                <p data-translate="about.historyContent">Создана в 1995 году по инициативе Президента Республики Казахстан. Уникальный консультативно-совещательный орган при Президенте.</p>
+            </div>
+            <div>
+                <h3 data-translate="about.missionTitle">Миссия</h3>
+                <p data-translate="about.missionContent">Укрепление межэтнического согласия, развитие культурного многообразия и национальной идентичности Казахстана.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ethnos Map Section -->
+    <section class="section container">
+        <h2 class="section-title" data-translate="sections.ethnos">Карта этносов Казахстана</h2>
+        <div class="ethnos-map">
+            <img src="карта1.jpeg" alt="Ethnos Map">
+            <div class="region-tooltip" id="regionTooltip"></div>
+        </div>
+    </section>
+
+    <!-- Events and News -->
+    <section class="section container">
+        <h2 class="section-title" data-translate="sections.events">Мероприятия и новости</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <img src="fest.jpeg" alt="Event 1">
+                <div class="event-card-content">
+                    <h3 data-translate="events.0.title">Фестиваль культур</h3>
+                    <p data-translate="events.0.description">Ежегодный праздник национальных традиций и искусства</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <img src="krug.jpeg" alt="Event 2">
+                <div class="event-card-content">
+                    <h3 data-translate="events.1.title">Круглый стол</h3>
+                    <p data-translate="events.1.description">Диалог о межнациональном взаимодействии</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <img src="molo.jpeg" alt="Event 3">
+                <div class="event-card-content">
+                    <h3 data-translate="events.2.title">Молодежный форум</h3>
+                    <p data-translate="events.2.description">Программа межкультурного обмена</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery -->
+    <section class="section container">
+        <h2 class="section-title" data-translate="sections.gallery">Галерея</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="s1.jpeg" alt="Gallery Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="s2.jpeg" alt="Gallery Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="s3.webp" alt="Gallery Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="s4.jpeg" alt="Gallery Image 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts -->
+    <section class="section container">
+        <h2 class="section-title" data-translate="sections.contacts">Контакты</h2>
+        <div class="contact-grid">
+            <div>
+                <h3 data-translate="contacts.addressTitle">Адрес</h3>
+                <p data-translate="contacts.address">г. Астана, проспект Абылай хана, 53</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" data-translate-placeholder="contacts.form.namePlaceholder" placeholder="Ваше имя" required>
+                <input type="email" data-translate-placeholder="contacts.form.emailPlaceholder" placeholder="Ваш email" required>
+                <textarea data-translate-placeholder="contacts.form.messagePlaceholder" placeholder="Ваше сообщение" rows="5" required></textarea>
+                <button type="submit" data-translate="contacts.form.submitButton">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+    function getDefaultLanguage() {
+        let lang = navigator.language || navigator.userLanguage;
+        lang = lang.split("-")[0]; // Если "kk-KZ", берем только "kk"
+        return ["kk", "ru", "en"].includes(lang) ? lang : "kk"; // Если язык не поддерживается, выбираем "kk"
+    }
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButtons = document.querySelectorAll('.language-btn');
+            const translations = {
+                kk: {
+                    meta: { title: 'Қазақстан Халқы Ассамблеясы' },
+                    navbar: { title: 'Қазақстан Халқы Ассамблеясы' },
+                    banner: {
+                        title: 'Бірлік пен келісім',
+                        subtitle: 'Барлық этностардың тең мүмкіндіктері'
+                    },
+                    sections: {
+                        about: 'Ассамблея туралы',
+                        ethnos: 'Қазақстанның этностар картасы',
+                        events: 'Оқиғалар және жаңалықтар',
+                        contacts: 'Байланыс',
+                        gallery: 'Галерея'
+                    },
+                    about: {
+    sectionTitle: 'Ассамблея туралы',
+    historyTitle: 'Тарих',
+    historyContent: 'Қазақстан Халқы Ассамблеясы 1995 жылы Қазақстан Республикасының Президентінің бастамасымен құрылды. Бұл орган елдегі этносаралық келісімді сақтау және нығайту мақсатында жұмыс істейтін бірегей консультативтік-кеңесші ұйым болып табылады. Ассамблея құрылған сәттен бастап, Қазақстандағы барлық этностардың мүдделерін ескеретін, олардың мәдениетін, дәстүрін, тілін дамытуға мүмкіндік беретін маңызды алаңға айналды. Бүгінгі таңда ол елдегі тұрақтылық пен қоғамдық келісімнің маңызды тірегіне айналды.',
+    missionTitle: 'Миссия',
+    missionContent: 'Қазақстан Халқы Ассамблеясының негізгі миссиясы – елдегі этносаралық келісімді нығайту, Қазақстанның мәдени алуан түрлілігін сақтау және ұлттық бірегейлікті дамыту. Ассамблея әртүрлі этностар мен мәдени қауымдастықтардың арасындағы диалогты қолдай отырып, өзара түсіністік пен сенімді нығайтады. Сонымен қатар, ол халықтың бірлігі мен ынтымақтастығын арттыру, азаматтық қоғамды нығайту және толеранттылық құндылықтарын кеңінен насихаттау міндеттерін атқарады.'
+},
+                    events: [
+                        {
+                            title: 'Мәдениеттер фестивалі',
+                            description: 'Ұлттық дәстүрлер мен өнердің жыл сайынғы мерекесі'
+                        },
+                        {
+                            title: 'Дөңгелек үстел',
+                            description: 'Ұлтаралық өзара іс-қимыл туралы диалог'
+                        },
+                        {
+                            title: 'Жастар форумы',
+                            description: 'Мәдениетаралық алмасу бағдарламасы'
+                        }
+                    ],
+                    contacts: {
+                        addressTitle: 'Мекен-жай',
+                        address: 'Астана қаласы, Абылай хан даңғылы, 53',
+                        form: {
+                            namePlaceholder: 'Сіздің атыңыз',
+                            emailPlaceholder: 'Сіздің электрондық поштаңыз',
+                            messagePlaceholder: 'Сіздің хабарламаңыз',
+                            submitButton: 'Жіберу'
+                        }
+                    }
+                },
+                ru: {
+                    meta: { title: 'Ассамблея народа Казахстана' },
+                    navbar: { title: 'Ассамблея народа Казахстана' },
+                    banner: {
+                        title: 'Единство и согласие',
+                        subtitle: 'Равные возможности для всех этносов'
+                    },
+                    sections: {
+                        about: 'Об Ассамблее народа Казахстана',
+                        ethnos: 'Карта этносов Казахстана',
+                        events: 'Мероприятия и новости',
+                        contacts: 'Контакты',
+                        gallery: 'Галерея'
+                    },
+                    about: {
+    sectionTitle: 'Об Ассамблее',
+    historyTitle: 'История',
+    historyContent: 'Ассамблея народа Казахстана была создана в 1995 году по инициативе Президента Республики Казахстан. Это уникальный консультативно-совещательный орган, который играет ключевую роль в поддержании и укреплении межэтнического согласия в стране. С момента своего основания Ассамблея стала важной платформой для диалога между этносами, защиты их прав и интересов, а также развития культуры, традиций и языков различных народов Казахстана. Сегодня она является одним из главных институтов, обеспечивающих общественное согласие и стабильность в стране.',
+    missionTitle: 'Миссия',
+    missionContent: 'Основная миссия Ассамблеи народа Казахстана – укрепление межэтнического согласия, сохранение культурного многообразия и развитие национальной идентичности Казахстана. Ассамблея содействует развитию диалога между этносами, формированию атмосферы доверия и взаимопонимания. Кроме того, она играет важную роль в укреплении единства народа Казахстана, развитии гражданского общества и продвижении ценностей толерантности и дружбы между народами.'
+},
+                    events: [
+                        {
+                            title: 'Фестиваль культур',
+                            description: 'Ежегодный праздник национальных традиций и искусства'
+                        },
+                        {
+                            title: 'Круглый стол',
+                            description: 'Диалог о межнациональном взаимодействии'
+                        },
+                        {
+                            title: 'Молодежный форум',
+                            description: 'Программа межкультурного обмена'
+                        }
+                    ],
+                    contacts: {
+                        addressTitle: 'Адрес',
+                        address: 'г. Астана, проспект Абылай хана, 53',
+                        form: {
+                            namePlaceholder: 'Ваше имя',
+                            emailPlaceholder: 'Ваш email',
+                            messagePlaceholder: 'Ваше сообщение',
+                            submitButton: 'Отправить'
+                        }
+                    }
+                },
+                en: {
+                    meta: { title: 'Assembly of People of Kazakhstan' },
+                    navbar: { title: 'Assembly of People of Kazakhstan' },
+                    banner: {
+                        title: 'Unity and Harmony',
+                        subtitle: 'Equal opportunities for all ethnicities'
+                    },
+                    sections: {
+                        about: 'About the Assembly',
+                        ethnos: 'Ethnos Map of Kazakhstan',
+                        events: 'Events and News',
+                        contacts: 'Contacts',
+                        gallery: 'Gallery'
+                    },
+                    about: {
+    sectionTitle: 'About the Assembly',
+    historyTitle: 'History',
+    historyContent: 'The Assembly of People of Kazakhstan was established in 1995 by the initiative of the President of the Republic of Kazakhstan. It is a unique advisory body that plays a key role in maintaining and strengthening interethnic harmony in the country. Since its foundation, the Assembly has become an important platform for dialogue among ethnic groups, protecting their rights and interests, and promoting the culture, traditions, and languages of Kazakhstan’s diverse communities. Today, it stands as one of the main institutions ensuring public unity and stability in the country.',
+    missionTitle: 'Mission',
+    missionContent: 'The primary mission of the Assembly of People of Kazakhstan is to strengthen interethnic harmony, preserve cultural diversity, and develop the national identity of Kazakhstan. The Assembly facilitates dialogue between ethnic groups, fostering an atmosphere of trust and mutual understanding. Additionally, it plays a crucial role in promoting the unity of the people of Kazakhstan, advancing civil society, and spreading the values of tolerance and friendship among nations.'
+},
+                    events: [
+                        {
+                            title: 'Cultural Festival',
+                            description: 'Annual celebration of national traditions and art'
+                        },
+                        {
+                            title: 'Round Table',
+                            description: 'Dialogue on inter-ethnic interaction'
+                        },
+                        {
+                            title: 'Youth Forum',
+                            description: 'Intercultural exchange program'
+                        }
+                    ],
+                    contacts: {
+                        addressTitle: 'Address',
+                        address: 'Astana, Abylai Khan Avenue, 53',
+                        form: {
+                            namePlaceholder: 'Your Name',
+                            emailPlaceholder: 'Your Email',
+                            messagePlaceholder: 'Your Message',
+                            submitButton: 'Send'
+                        }
+                    }
+                }
+            };
+
+            function translatePage(lang) {
+                // Обновление заголовка страницы
+                document.title = translations[lang].meta.title;
+
+                // Обновление элементов с data-translate
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    const translationPath = key.split('.');
+                    
+                    let translatedText = translations[lang];
+                    for (let path of translationPath) {
+                        translatedText = translatedText[path];
+                    }
+                    
+                    if (translatedText) {
+                        el.textContent = translatedText;
+                    }
+                });
+
+                // Обновление placeholder
+                document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-translate-placeholder');
+                    const translationPath = key.split('.');
+                    
+                    let translatedText = translations[lang];
+                    for (let path of translationPath) {
+                        translatedText = translatedText[path];
+                    }
+                    
+                    if (translatedText) {
+                        el.placeholder = translatedText;
+                    }
+                });
+
+                // Обновление активной кнопки языка
+                languageButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Обновление языка документа
+                document.documentElement.lang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+            }
+
+            // Обработчики событий для кнопок смены языка
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    translatePage(lang);
+                });
+            });
+
+            // Восстановление последнего выбранного языка
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru';
+            translatePage(savedLanguage);
+
+            // Этнографическая карта - интерактивность
+            const ethnicMap = document.querySelector('.ethnos-map');
+            const tooltip = document.getElementById('regionTooltip');
+
+            const regionData = {
+                'north': { 
+                    name: 'Северный Казахстан', 
+                    ethnicGroups: ['Русские', 'Казахи', 'Украинцы'] 
+                },
+                'south': { 
+                    name: 'Южный Казахстан', 
+                    ethnicGroups: ['Казахи', 'Узбеки', 'Уйгуры'] 
+                },
+                'west': { 
+                    name: 'Западный Казахстан', 
+                    ethnicGroups: ['Казахи', 'Татары', 'Русские'] 
+                }
+            };
+
+            ethnicMap.addEventListener('mousemove', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                let region = '';
+                if (x < rect.width / 3) region = 'west';
+                else if (x > rect.width * 2/3) region = 'south';
+                else region = 'north';
+
+                if (regionData[region]) {
+                    tooltip.innerHTML = `
+                        <strong>${regionData[region].name}</strong><br>
+                        Основные этнические группы: 
+                        ${regionData[region].ethnicGroups.join(', ')}
+                    `;
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = `${x}px`;
+                    tooltip.style.top = `${y}px`;
+                } else {
+                    tooltip.style.display = 'none';
+                }
+            });
+
+            ethnicMap.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+
+            // Форма обратной связи
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Сообщение отправлено! / Message sent! / Хабарлама жіберілді!');
+            });
+        });
+    </script>
+</body>
+</html>

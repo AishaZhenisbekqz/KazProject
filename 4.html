@@ -5,160 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Салт-дәстүр сабақтастығы</title>
     <style>
-        :root {
-            --primary-blue: #0077be;
-            --secondary-gold: #ffd700;
-            --text-dark: #333;
-            --background-light: #f4f4f4;
-            --hover-color: rgba(0, 119, 190, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--background-light);
-        }
-
-        /* Navigation Styles */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
-            color: white;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .navbar-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-        .navbar-title {
-    font-size: 28px; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    color: #ffffff; /* Цвет текста */
-    text-align: center; /* Выравнивание текста по центру */
-    padding: 10px 20px; /* Отступы */
-    border-radius: 8px; /* Закругленные углы */
+:root {
+    --primary-blue: #0077be;
+    --secondary-gold: #ffd700;
+    --text-dark: #333;
+    --background-light: #f4f4f4;
+    --hover-color: rgba(0, 119, 190, 0.1);
 }
 
-        .brand-text {
-    font-size: 28px;  /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    transition: color 0.3s ease; /* Плавное изменение цвета */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-        .language-buttons {
-            display: flex;
-            gap: 10px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    overflow-x: hidden;
+}
 
-        .language-buttons {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+/* Navigation Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+    color: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .language-buttons:hover {
-            background: rgba(255,255,255,0.3);
-        }
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
 
-        .back-button {
-            background: white;
-            color: var(--primary-blue);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: block;
-        }
+.navbar-logo img {
+    height: 60px;
+    margin-right: 10px;
+    max-width: 100%;
+}
 
+.navbar-title {
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+.brand-text {
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-        /* Rest of the previous CSS remains the same */
-        .section {
-            background: white;
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .section-title {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--secondary-gold);
-            padding-bottom: 10px;
-        }
+.language-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-        .traditions-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+.language-buttons button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 14px;
+}
 
-        .traditions-table th, .traditions-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
+.language-buttons button:hover {
+    background: rgba(255,255,255,0.3);
+}
 
-        .traditions-table th {
-            background-color: var(--primary-blue);
-            color: white;
-        }
+.back-button {
+    background: white;
+    color: var(--primary-blue);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            display: block !important;
-        }
+.back-button:hover {
+    background-color: #f0f0f0;
+}
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
 
-        @media (max-width: 768px) {
-            .traditions-table {
-                font-size: 14px;
-            }
-        }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
+/* Rest of the previous CSS remains the same */
+.section {
+    background: white;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-gold);
+    padding-bottom: 10px;
+    font-size: clamp(18px, 5vw, 24px);
+}
+
+.traditions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+.traditions-table th, .traditions-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.traditions-table th {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    display: block !important;
+    margin-top: 20px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Improved Responsive Design */
+@media (max-width: 992px) {
+    .traditions-table {
+        font-size: 14px;
+    }
+    
+    .traditions-table th, .traditions-table td {
+        padding: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .navbar-actions {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .language-buttons {
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    
+    .back-button {
+        margin-top: 5px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .traditions-table {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section {
+        padding: 15px;
+    }
+    
+    .traditions-comparison {
+        overflow-x: auto;
+    }
+    
+    .traditions-table {
+        min-width: 500px;
+    }
+}
     </style>
 </head>
 <body>

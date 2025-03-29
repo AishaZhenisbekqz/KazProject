@@ -5,256 +5,310 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Играй и Думай</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
 
-        header {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
+header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
 
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
 
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
 
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s ease;
-        }
+.lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+}
 
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
 
-        .lang-btn.active {
-            background: white;
-            color: #6a11cb;
-            font-weight: bold;
-        }
+.lang-btn.active {
+    background: white;
+    color: #6a11cb;
+    font-weight: bold;
+}
 
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s ease;
-            display: block; /* Changed from 'none' to 'block' to make it always visible */
-        }
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    display: block;
+}
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
 
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 10rem;
-        }
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
 
-        .game-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            width: 520px; /* Увеличенная ширина */
-            height: 470px; /* Увеличенная высота */
-        }
+.game-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    min-height: 450px;
+}
 
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
 
-        .game-card:hover .card-img {
-            transform: scale(1.05);
-        }
+.game-card:hover .card-img {
+    transform: scale(1.05);
+}
 
-        .card-img-container {
-            height: 350px;
-            overflow: hidden;
-        }
+.card-img-container {
+    height: 250px;
+    overflow: hidden;
+}
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
 
-        .card-content {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+.card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-        .game-type {
-            display: inline-block;
-            background: rgba(106, 17, 203, 0.1);
-            color: #6a11cb;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-        }
+.game-type {
+    display: inline-block;
+    background: rgba(106, 17, 203, 0.1);
+    color: #6a11cb;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
 
-        .game-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: #333;
-        }
+.game-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+}
 
-        .game-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
+.game-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
 
-        .play-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
-        }
+.play-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
+    margin-top: auto;
+}
 
-        .play-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
-        }
+.play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+}
 
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
 
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-        }
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
 
-        .footer-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+.footer-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
-        .footer-link:hover {
-            color: white;
-        }
+.footer-link:hover {
+    color: white;
+}
 
-        .game-view {
-            display: none;
-            width: 100%;
-            height: 80vh;
-            margin-top: 20px;
-        }
+.game-view {
+    display: none;
+    width: 100%;
+    height: 80vh;
+    margin-top: 20px;
+}
 
-        .game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+.game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
-            .card-img-container {
-                height: 160px;
-            }
-            .language-selector {
-                position: relative;
-                top: auto;
-                right: auto;
-                justify-content: center;
-                margin-top: 1rem;
-            }
-            header {
-                padding-bottom: 1rem;
-            }
-            .back-btn {
-                position: relative;
-                top: auto;
-                left: auto;
-                margin: 1rem auto 0;
-                display: inline-block;
-            }
-        }
+/* Media Queries for responsiveness */
+@media (max-width: 992px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .game-card {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 1rem 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-top: 1.5rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .language-selector {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .back-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .card-img-container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+    
+    .game-card {
+        min-height: 400px;
+    }
+    
+    .card-img-container {
+        height: 180px;
+    }
+    
+    .card-content {
+        padding: 1.2rem;
+    }
+    
+    .game-title {
+        font-size: 1.2rem;
+    }
+    
+    .play-btn {
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .game-view {
+        height: 70vh;
+    }
+}
     </style>
 </head>
 <body>

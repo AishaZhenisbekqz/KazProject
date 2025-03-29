@@ -5,254 +5,338 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мен – Қазақстан азаматымын | Kazakhstan Citizen</title>
     <style>
-        :root {
-            --primary-blue: #0077be;
-            --secondary-gold: #ffd700;
-            --text-dark: #333;
-            --background-light: #f4f4f4;
-            --hover-color: rgba(0, 119, 190, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--background-light);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Navigation */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
-            color: white;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            margin-right: 10px;
-        }
-
-        .brand-text {
-    font-size: 28px;  /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    transition: color 0.3s ease; /* Плавное изменение цвета */
+ :root {
+    --primary-blue: #0077be;
+    --secondary-gold: #ffd700;
+    --text-dark: #333;
+    --background-light: #f4f4f4;
+    --hover-color: rgba(0, 119, 190, 0.1);
 }
 
-        .language-switcher {
-            display: flex;
-            gap: 10px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .language-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    overflow-x: hidden;
+}
 
-        .language-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-        .back-btn {
-            background: white;
-            color: var(--primary-blue);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+    color: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+}
 
-        /* Sections */
-        .section {
-            background: white;
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.logo {
+    display: flex;
+    align-items: center;
+}
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
 
-        .section-title i {
-            margin-right: 15px;
-            color: var(--primary-blue);
-        }
+.brand-text {
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-        /* Map Styles */
-        .kazakhstan-map {
-            position: relative;
-            width: 100%;
-        }
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
 
-        .kazakhstan-map img {
-            width: 100%;
-            height: auto;
-        }
+.language-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
-        .map-region {
-            position: absolute;
-            fill: rgba(0,119,190,0.3);
-            transition: fill 0.3s;
-        }
+.language-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
 
-        .map-region:hover {
-            fill: rgba(0,119,190,0.6);
-            cursor: pointer;
-        }
+.back-btn {
+    background: white;
+    color: var(--primary-blue);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        /* Мемлекеттік рәміздер бөлімі */
-        .state-symbols {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px; /* Блоктар арасындағы қашықтық */
-        }
+/* Sections */
+.section {
+    background: white;
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
-        .anthem {
-            flex: 1; /* Әнұран блогы */
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Ортасына орналастыру */
-            text-align: center; /* Мәтінді ортаға қою */
-            margin-left: 50px; /* Оңға жылжыту */
-        }
+.section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .flag-emblem {
-            flex: 1; /* Ту мен Елтаңба блогы */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+.section-title i {
+    margin-right: 15px;
+    color: var(--primary-blue);
+}
 
-        .flag, .emblem {
-            margin-bottom: 20px;
-        }
+/* Map Styles */
+.kazakhstan-map {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 
-        .flag-image {
-            width: 370px;
-            height: 200px; /* Қалаған биіктік */
-            object-fit: cover; /* Пропорцияны сақтау үшін */
-        }
+.kazakhstan-map img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
 
-        .emblem-image {
-            width: 300px;
-            height: 330px; /* Қалаған биіктік */
-            object-fit: cover; /* Пропорцияны сақтау үшін */
-        }
+.map-region {
+    position: absolute;
+    fill: rgba(0,119,190,0.3);
+    transition: fill 0.3s;
+}
 
-        /* Әнұран аудио және мәтін */
-        .anthem-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            margin-right: 100px;
-        }
+.map-region:hover {
+    fill: rgba(0,119,190,0.6);
+    cursor: pointer;
+}
 
-        .anthem-text {
-            font-size: 13px;
-            font-style: italic;
-            margin-bottom: 5px;
-            text-align: left;
-        }
+/* State symbols section */
+.state-symbols {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        audio {
-            width: 100%;
-            max-width: 400px;
-        }
+.anthem {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .flag-authors, .emblem-authors, .anthem-authors {
-            font-size: 10px;
-            font-weight: bold;
-            margin-top: 5px;
-            color: #555;
-        }
+.flag-emblem {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
+.flag, .emblem {
+    margin-bottom: 20px;
+    width: 100%;
+}
 
-            .section {
-                padding: 15px;
-            }
+.flag-image {
+    width: 100%;
+    max-width: 370px;
+    height: auto;
+    object-fit: contain;
+}
 
-            .state-symbols {
-                flex-direction: column;
-                align-items: center;
-            }
+.emblem-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+}
 
-            .anthem, .flag-emblem {
-                width: 100%;
-                text-align: center;
-            }
+/* Anthem audio and text */
+.anthem-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
 
-        /* Ethnic Composition */
-        .ethnic-chart {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
+.anthem-text {
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+}
 
+audio {
+    width: 100%;
+    max-width: 400px;
+    margin: 15px 0;
+}
 
-        .ethnic-bar {
-            flex-grow: 1;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            transition: width 0.5s ease;
-        }
-       
+.flag-authors, .emblem-authors, .anthem-authors {
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #555;
+    width: 100%;
+    text-align: center;
+}
 
+/* Ethnic Composition */
+.ethnic-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
+.ethnic-info {
+    flex: 1;
+    min-width: 280px;
+}
 
-            .section {
-                padding: 15px;
-            }
-        }
+.ethnic-chart-container {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.region-selector {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.region-selector select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.ethnic-chart-container canvas {
+    width: 100% !important;
+    max-width: 400px;
+    height: auto !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .state-symbols {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .anthem, .flag-emblem {
+        width: 100%;
+    }
+    
+    .ethnic-container {
+        flex-direction: column;
+    }
+    
+    .ethnic-info, .ethnic-chart-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .brand-text {
+        font-size: 22px;
+        text-align: center;
+    }
+    
+    .logo {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .language-switcher {
+        justify-content: center;
+        margin: 10px 0;
+    }
+    
+    .back-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .section {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .flag-image, .emblem-image {
+        max-width: 100%;
+    }
+    
+    audio {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .section-title h2 {
+        font-size: 18px;
+    }
+    
+    .anthem-title, .flag-title, .emblem-title {
+        font-size: 18px;
+    }
+    
+    .anthem-text {
+        font-size: 12px;
+    }
+}
     </style>
 </head>
 <body>

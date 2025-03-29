@@ -6,88 +6,104 @@
     <title>Ассамблея народа Казахстана</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary-blue: #0B5394;
-            --secondary-gold: #D4AF37;
-            --text-dark: #2C3E50;
-            --background-light: #F5F5F5;
-            --white: #FFFFFF;
-            --accent-green: #2ECC71;
-        }
+:root {
+    --primary-blue: #0B5394;
+    --secondary-gold: #D4AF37;
+    --text-dark: #2C3E50;
+    --background-light: #F5F5F5;
+    --white: #FFFFFF;
+    --accent-green: #2ECC71;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--background-light);
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-        /* Navigation Styles */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+/* Navigation Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: nowrap;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
-        .logo img {
-            height: 50px;
-            margin-right: 10px;
-        }
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+    width: auto;
+}
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        .language-selector {
-            display: flex;
-            gap: 10px;
-        }
+.language-selector {
+    display: flex;
+    gap: 8px;
+}
 
-        .language-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+.language-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9rem;
+    min-width: 45px;
+    text-align: center;
+}
 
-        .language-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
+.language-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
 
-        /* Banner Section */
-        .banner {
+.language-btn.active {
+    background: rgba(255,255,255,0.4);
+    font-weight: bold;
+}
+
+/* Banner Section */
+.banner {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,183 +125,356 @@
 .banner-content {
     position: relative;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.5); /* Мәтін оқылатын болуы үшін қара фон */
+    background: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
-    margin-top: -310px; /* Жоғары көтеру */
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-
-        /* Section Styles */
-        .section {
-            padding: 50px 0;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-blue);
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        /* Ethnos Map */
-        .ethnos-map {
-            position: relative;
-            width: 100%;
-        }
-
-        .ethnos-map img {
-            width: 100%;
-            height: auto;
-        }
-
-        .region-tooltip {
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-        .about-grid h3 {
-    padding-left: 20px; /* Сол жақ шекарадан алшақтату */
-    padding-right: 20px; /* Оң жақ шекарадан алшақтату */
-}
-        .about-grid p {
-    padding-left: 20px; /* Сол жақ шекарадан алшақтату */
-    padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+.banner-content h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
-        /* Events and News */
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+.banner-content p {
+    font-size: 1.1rem;
+}
 
-        .event-card {
-            background: var(--background-light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+/* Section Styles */
+.section {
+    padding: 40px 0;
+    background: white;
+    margin-bottom: 0;
+}
 
-        .event-card:hover {
-            transform: scale(1.05);
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+}
 
-        .event-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
 
-        .event-card-content {
-            padding: 15px;
-        }
+.about-grid h3 {
+    padding: 0 15px;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
 
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
+.about-grid p {
+    padding: 0 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+/* Ethnos Map */
+.ethnos-map {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
+.ethnos-map img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: block;
+}
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+.region-tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    max-width: 250px;
+    font-size: 0.9rem;
+    z-index: 10;
+}
 
-        /* Contacts */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+/* Events and News */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+.event-card {
+    background: var(--background-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-        .contact-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.event-card:hover {
+    transform: translateY(-5px);
+}
 
-        .contact-form button:hover {
-            background-color: var(--secondary-gold);
-        }
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .about-grid,
-            .events-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+.event-card-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+.event-card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
 
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
+.event-card-content p {
+    font-size: 1rem;
+}
 
-            .nav-actions {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        .back-btn {
-            background: white;
-            color: var(--primary-blue);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .contact-grid p {
-        padding-left: 20px; /* Сол жақ шекарадан алшақтату */
-        padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Contacts */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.contact-info h3 {
+    padding: 0 15px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.contact-info p {
+    padding: 0 15px;
+    font-size: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: var(--secondary-gold);
+}
+
+/* Back Button */
+.back-btn {
+    background: white;
+    color: var(--primary-blue);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+}
+
+.back-btn:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .banner {
+        height: 250px;
     }
-    .contact-grid h3 {
-        padding-left: 20px; /* Сол жақ шекарадан алшақтату */
-        padding-right: 20px; /* Оң жақ шекарадан алшақтату */
+    
+    .banner-content h1 {
+        font-size: 1.8rem;
     }
+    
+    .banner-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 5%;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .logo img {
+        height: 30px;
+    }
+    
+    .nav-actions {
+        gap: 10px;
+    }
+    
+    .language-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        min-width: 40px;
+    }
+    
+    .banner {
+        height: 200px;
+    }
+    
+    .banner-content {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .banner-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .section {
+        padding: 30px 0;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .about-grid h3 {
+        font-size: 1.3rem;
+    }
+    
+    .event-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 10px 3%;
+    }
+    
+    .logo {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .nav-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .language-selector {
+        gap: 5px;
+    }
+    
+    .language-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        min-width: 35px;
+    }
+    
+    .banner {
+        height: 180px;
+    }
+    
+    .banner-content {
+        padding: 10px;
+    }
+    
+    .banner-content h1 {
+        font-size: 1.3rem;
+    }
+    
+    .banner-content p {
+        font-size: 0.9rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .event-card img {
+        height: 160px;
+    }
+}
     </style>
 </head>
 <body>

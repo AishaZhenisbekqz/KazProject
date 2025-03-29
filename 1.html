@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Мен – Қазақстан азаматымын | I am a Citizen of Kazakhstan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -25,6 +25,16 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--background-light);
+            max-width: 1920px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Navigation Styles */
@@ -32,43 +42,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 20px;
             background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
             color: white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             font-weight: bold;
         }
 
         .logo img {
-            height: 50px;
+            height: clamp(30px, 5vw, 50px);
             margin-right: 10px;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: clamp(10px, 2vw, 20px);
         }
 
         .language-selector {
             display: flex;
-            gap: 10px;
+            gap: clamp(5px, 1vw, 10px);
         }
 
         .language-btn {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            padding: 8px 15px;
+            padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 15px);
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
         }
 
         .language-btn:hover {
@@ -77,28 +90,39 @@
 
         .auth-buttons {
             display: flex;
-            gap: 10px;
+            gap: clamp(5px, 1vw, 10px);
         }
 
         .auth-btn {
             background-color: white;
             color: var(--primary-blue);
             border: none;
-            padding: 10px 20px;
+            padding: clamp(8px, 1.2vw, 10px) clamp(15px, 2vw, 20px);
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            white-space: nowrap;
         }
 
         .auth-btn:hover {
             background-color: #f0f0f0;
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         /* Full-screen Slider */
         .hero-slider {
             position: relative;
             width: 100%;
-            height: 80vh;
+            height: clamp(300px, 50vh, 600px);
             overflow: hidden;
         }
 
@@ -125,108 +149,228 @@
             display: flex;
             justify-content: space-between;
             transform: translateY(-50%);
-            padding: 0 5%;
+            padding: 0 clamp(10px, 3vw, 50px);
+            z-index: 10;
         }
 
         .slider-control {
             background: rgba(255,255,255,0.5);
             color: var(--primary-blue);
             border: none;
-            padding: 10px 15px;
+            width: clamp(30px, 5vw, 50px);
+            height: clamp(30px, 5vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             border-radius: 50%;
+            font-size: clamp(1rem, 2vw, 1.5rem);
         }
 
         /* Section Cards Grid */
+        .section-cards-container {
+            padding: clamp(30px, 5vw, 50px) 20px;
+        }
+
         .section-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 50px 5%;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 30vw, 350px), 1fr));
+            gap: clamp(15px, 2vw, 30px);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .section-card {
             background: white;
             border-radius: 10px;
-            padding: 30px;
+            padding: clamp(20px, 3vw, 30px);
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            height: clamp(180px, 25vw, 220px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-dark);
         }
 
         .section-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         }
 
         .section-card-icon {
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--primary-blue);
-            margin-bottom: 15px;
+            margin-bottom: clamp(10px, 2vw, 15px);
+        }
+
+        .section-card h3 {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin: 0;
         }
 
         /* Contact Section */
-        .contact-section {
+        .contact-section-container {
             background: linear-gradient(to right, var(--primary-blue), var(--secondary-gold));
-            color: white;
-            padding: 50px 5%;
+            padding: clamp(30px, 5vw, 50px) 20px;
+        }
+
+        .contact-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(20px, 4vw, 50px);
+            max-width: 1400px;
+            margin: 0 auto;
+            color: white;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: 15px;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: clamp(15px, 3vw, 25px);
+        }
+
+        .contact-info p {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .contact-form {
             display: grid;
-            gap: 15px;
+            gap: clamp(10px, 2vw, 15px);
         }
 
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             border: none;
             border-radius: 5px;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
         }
 
         .contact-form button {
             background-color: white;
             color: var(--primary-blue);
             border: none;
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             border-radius: 5px;
             cursor: pointer;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .contact-form button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: clamp(20px, 3vw, 30px);
+            text-align: center;
+            font-size: clamp(0.8rem, 1.6vw, 1rem);
+        }
+
+        .footer p {
+            margin: 5px 0;
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
             .section-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-section {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                text-align: center;
+                padding: 12px 15px;
             }
-
+            
+            .logo span {
+                font-size: 1.2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .nav-actions {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-blue);
                 flex-direction: column;
-                gap: 10px;
+                padding: 20px;
+                gap: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
             }
+            
+            .nav-actions.active {
+                transform: translateY(0);
+            }
+            
+            .section-card {
+                height: 180px;
+            }
+        }
 
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 10px;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
+            
+            .logo span {
+                font-size: 1rem;
+            }
+            
+            .slider-controls {
+                padding: 0 10px;
+            }
+            
             .section-cards {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .section-card {
+                height: 150px;
+                padding: 15px;
+            }
+            
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form input,
+            .contact-form textarea,
+            .contact-form button {
+                padding: 12px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -235,11 +379,14 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="https://www.nur.kz/_astro/images/favicons/apple-touch-icon.png" alt="Kazakhstan Emblem">
+            <img src="l.jpeg" alt="Kazakhstan Emblem">
             <span data-text-kk="Мен - Қазақстан азаматымын" data-text-ru="Я – гражданин Казахстана" data-text-en="Citizen of Kazakhstan">
                 Я – гражданин Казахстана
             </span>
         </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-actions">
             <div class="language-selector">
                 <button class="language-btn" data-lang="kk">Қаз</button>
@@ -260,84 +407,97 @@
         <div class="slider-image" style="background-image: url('4.jpeg')"></div>
         
         <div class="slider-controls">
-            <button class="slider-control slider-prev">&#10094;</button>
-            <button class="slider-control slider-next">&#10095;</button>
+            <button class="slider-control slider-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-control slider-next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
     <!-- Section Cards -->
-    <div class="section-cards">
-        <a href="2.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-flag"></i></div>
-            <h3 data-text-kk="Мен және менің Отаным" data-text-ru="Я и моя Родина" data-text-en="Me and My Homeland">Я и моя Родина</h3>
-        </a>        
-        <a href="3.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-flag"></i></div>
-            <h3 data-text-kk="Қазақстан халқы Ассамблеясы"  data-text-ru="Ассамблея народа Казахстана" data-text-en="Assembly of the People of Kazakhstan"> Қазақстан халқы Ассамблеясы
-            </h3>
-        </a>
-        <a href="4.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-handshake"></i></div>
-            <h3 data-text-kk="Салт-дәстүр сабақтастығы" data-text-ru="Связь традиций" data-text-en="Tradition Connections">
-                Связь традиций
-            </h3>
-        </a>        
-        <a href="5.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-language"></i></div>
-            <h3 data-text-kk="Тілім - тірегім" data-text-ru="Язык – мой фундамент" data-text-en="Language is My Foundation">
-                Язык – мой фундамент
-            </h3>
-        </a>               
-        <a href="6.html" class="block no-underline">
-            <div class="section-card">
+    <div class="section-cards-container">
+        <div class="section-cards">
+            <a href="2.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-flag"></i></div>
+                <h3 data-text-kk="Мен және менің Отаным" data-text-ru="Я и моя Родина" data-text-en="Me and My Homeland">Я и моя Родина</h3>
+            </a>        
+            <a href="3.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-flag"></i></div>
+                <h3 data-text-kk="Қазақстан халқы Ассамблеясы"  data-text-ru="Ассамблея народа Казахстана" data-text-en="Assembly of the People of Kazakhstan">Қазақстан халқы Ассамблеясы</h3>
+            </a>
+            <a href="4.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-handshake"></i></div>
+                <h3 data-text-kk="Салт-дәстүр сабақтастығы" data-text-ru="Связь традиций" data-text-en="Tradition Connections">Связь традиций</h3>
+            </a>        
+            <a href="5.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-language"></i></div>
+                <h3 data-text-kk="Тілім - тірегім" data-text-ru="Язык – мой фундамент" data-text-en="Language is My Foundation">Язык – мой фундамент</h3>
+            </a>               
+            <a href="6.html" class="section-card">
                 <div class="section-card-icon"><i class="fas fa-home"></i></div>
-                <h3 data-text-kk="Отан отбасыдан басталады" 
-                    data-text-ru="Родина начинается с семьи" 
-                    data-text-en="Homeland Begins with Family">
-                    Родина начинается с семьи
-                </h3>
-            </div>
-        </a>        
-        <a href="7.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-utensils"></i></div>
-            <h3 data-text-kk="Ас адамның арқауы" data-text-ru="Еда – энергия жизни" data-text-en="Food is Life's Energy">
-                Еда – энергия жизни
-            </h3>
-        </a>        
-        <a href="8.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-tshirt"></i></div>
-            <h3 data-text-kk="Ұлттық киім - ұлттың айнасы" data-text-ru="Национальная одежда – зеркало нации" data-text-en="National Clothing - Nation's Mirror">
-                Национальная одежда – зеркало нации
-            </h3>
-        </a>        
-        <a href="9.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-gamepad"></i></div>
-            <h3 data-text-kk="Ойна және ойлан" data-text-ru="Играй и развивайся" data-text-en="Play and Develop">Играй и развивайся</h3>
-        </a>        
-        <a href="10.html" class="section-card">
-            <div class="section-card-icon"><i class="fas fa-info-circle"></i></div>
-            <h3 data-text-kk="Біз туралы" data-text-ru="О нас" data-text-en="About Us">О нас</h3>
-        </a>        
+                <h3 data-text-kk="Отан отбасыдан басталады" data-text-ru="Родина начинается с семьи" data-text-en="Homeland Begins with Family">Родина начинается с семьи</h3>
+            </a>        
+            <a href="7.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-utensils"></i></div>
+                <h3 data-text-kk="Ас адамның арқауы" data-text-ru="Еда – энергия жизни" data-text-en="Food is Life's Energy">Еда – энергия жизни</h3>
+            </a>        
+            <a href="8.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-tshirt"></i></div>
+                <h3 data-text-kk="Ұлттық киім - ұлттың айнасы" data-text-ru="Национальная одежда – зеркало нации" data-text-en="National Clothing - Nation's Mirror">Национальная одежда – зеркало нации</h3>
+            </a>        
+            <a href="9.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-gamepad"></i></div>
+                <h3 data-text-kk="Ойна және ойлан" data-text-ru="Играй и развивайся" data-text-en="Play and Develop">Играй и развивайся</h3>
+            </a>        
+            <a href="10.html" class="section-card">
+                <div class="section-card-icon"><i class="fas fa-info-circle"></i></div>
+                <h3 data-text-kk="Біз туралы" data-text-ru="О нас" data-text-en="About Us">О нас</h3>
+            </a>        
+        </div>
     </div>
 
     <!-- Contact Section -->
-    <div class="contact-section">
-        <div class="contact-info">
-            <h2 data-text-kk="Бізбен байланысыңыз" data-text-ru="Связаться с нами" data-text-en="Contact Us">Связаться с нами</h2>
-            <p>📍 Адрес: Туркестанская область, Казахстан</p>
-            <p>📞 Телефон: +7 (775) 719 9470</p>
-            <p>📩 Email: s.fariza_0399@mail.ru</p>
+    <div class="contact-section-container">
+        <div class="contact-section">
+            <div class="contact-info">
+                <h2 data-text-kk="Бізбен байланысыңыз" data-text-ru="Связаться с нами" data-text-en="Contact Us">Связаться с нами</h2>
+                <p><i class="fas fa-map-marker-alt"></i> Адрес: Туркестанская область, Казахстан</p>
+                <p><i class="fas fa-phone"></i> Телефон: +7 (775) 719 9470</p>
+                <p><i class="fas fa-envelope"></i> Email: s.fariza_0399@mail.ru</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="email" placeholder="Ваш email" required>
+                <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                <button type="submit" data-text-kk="Жіберу" data-text-ru="Отправить" data-text-en="Send">Отправить</button>
+            </form>
         </div>
-        <form class="contact-form">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="email" placeholder="Ваш email" required>
-            <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
-            <button type="submit" data-text-kk="Жіберу" data-text-ru="Отправить" data-text-en="Send">Отправить</button>
-        </form>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-text-kk="Авторлық құқық © 2025. Барлық құқықтар қорғалған." 
+           data-text-ru="Авторское право © 2025. Все права защищены." 
+           data-text-en="Copyright © 2025. All Rights Reserved.">
+            Авторское право © 2025. Все права защищены.
+        </p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navActions = document.querySelector('.nav-actions');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navActions.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.navbar')) {
+                    navActions.classList.remove('active');
+                }
+            });
+            
             // Language Switching
             const languageButtons = document.querySelectorAll('.language-btn');
             const translatableElements = document.querySelectorAll('[data-text-kk]');
@@ -374,15 +534,14 @@
                     btn.textContent = translations[lang].btnText[index];
                 });
 
-                // Update auth buttons
-                const loginBtn = document.querySelector('.auth-buttons .auth-btn:first-child');
-                const registerBtn = document.querySelector('.auth-buttons .auth-btn:last-child');
-                loginBtn.textContent = translations[lang].login;
-                registerBtn.textContent = translations[lang].register;
+                // Save selected language to localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            }
 
-                // Update brand
-                const brand = document.querySelector('.logo span');
-                brand.textContent = translations[lang].brand;
+            // Check for saved language preference
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage) {
+                switchLanguage(savedLanguage);
             }
 
             languageButtons.forEach(btn => {
@@ -397,10 +556,18 @@
             const prevBtn = document.querySelector('.slider-prev');
             const nextBtn = document.querySelector('.slider-next');
             let currentSlide = 0;
+            let isAnimating = false;
 
             function showSlide(index) {
+                if (isAnimating) return;
+                isAnimating = true;
+                
                 sliderImages.forEach(img => img.classList.remove('active'));
                 sliderImages[index].classList.add('active');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 1000); // Match this with your CSS transition time
             }
 
             function nextSlide() {
@@ -416,17 +583,56 @@
             nextBtn.addEventListener('click', nextSlide);
             prevBtn.addEventListener('click', prevSlide);
 
-            // Auto-slide every 5 seconds
-            setInterval(nextSlide, 5000);
+            // Touch support for slider
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const slider = document.querySelector('.hero-slider');
+            
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    nextSlide(); // Swipe left
+                } else if (touchEndX > touchStartX + 50) {
+                    prevSlide(); // Swipe right
+                }
+            }
+
+            // Auto-slide every 5 seconds with interruption on manual control
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            function resetSlideInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            nextBtn.addEventListener('click', resetSlideInterval);
+            prevBtn.addEventListener('click', resetSlideInterval);
+            slider.addEventListener('touchend', resetSlideInterval);
 
             // Contact Form Submission (Placeholder)
             const contactForm = document.querySelector('.contact-form');
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 alert('Форма отправлена! / Form submitted! / Форма жіберілді!');
+                contactForm.reset();
+            });
+            
+            // Ensure proper display when resizing window
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    navActions.classList.remove('active');
+                }
             });
         });
     </script>
-    <script src="language-switcher.js"></script>
 </body>
 </html>
